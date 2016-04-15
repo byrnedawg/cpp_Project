@@ -25,12 +25,14 @@ public slots:
     void setXRotation(int angle);
     void setYRotation(int angle);
     void setZRotation(int angle);
+    void setView(int distance);
     void cleanup();
 
 signals:
     void xRotationChanged(int angle);
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
+    void viewDistanceChanged(int distance);
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;
@@ -46,10 +48,11 @@ private:
     int m_xRot;
     int m_yRot;
     int m_zRot;
+    int m_viewDis;
     QPoint m_lastPos;
-    Draw3D m_logo;
+    Draw3D m_model3D;
     QOpenGLVertexArrayObject m_vao;
-    QOpenGLBuffer m_logoVbo;
+    QOpenGLBuffer m_model3DVbo;
     QOpenGLShaderProgram *m_program;
     int m_projMatrixLoc;
     int m_mvMatrixLoc;

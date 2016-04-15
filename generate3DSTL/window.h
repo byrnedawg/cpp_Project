@@ -24,11 +24,13 @@ private slots:
 
 private:
     QSlider *createSlider();
+    QSlider *createSlider2();
 
     GLWidget *glWidget;
     QSlider *xSlider;
     QSlider *ySlider;
     QSlider *zSlider;
+    QSlider *viewSlider;
     QPushButton *dockBtn;
     MainWindow *mainWindow;
 };

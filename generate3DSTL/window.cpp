@@ -19,6 +19,9 @@ Window::Window(MainWindow *mw)
     ySlider = createSlider();
     zSlider = createSlider();
 
+    viewSlider = createSlider2();
+
+
     connect(xSlider, &QSlider::valueChanged, glWidget, &GLWidget::setXRotation);
     connect(glWidget, &GLWidget::xRotationChanged, xSlider, &QSlider::setValue);
     connect(ySlider, &QSlider::valueChanged, glWidget, &GLWidget::setYRotation);
@@ -26,12 +29,17 @@ Window::Window(MainWindow *mw)
     connect(zSlider, &QSlider::valueChanged, glWidget, &GLWidget::setZRotation);
     connect(glWidget, &GLWidget::zRotationChanged, zSlider, &QSlider::setValue);
 
+    connect(viewSlider, &QSlider::valueChanged, glWidget, &GLWidget::setView);
+    connect(glWidget, &GLWidget::viewDistanceChanged, viewSlider, &QSlider::setValue);
+
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
     QHBoxLayout *container = new QHBoxLayout;
     container->addWidget(glWidget);
     container->addWidget(xSlider);
     container->addWidget(ySlider);
     container->addWidget(zSlider);
+    //container->addWidget(viewSlider);
 
     QWidget *w = new QWidget;
     w->setLayout(container);
@@ -45,8 +53,9 @@ Window::Window(MainWindow *mw)
     xSlider->setValue(15 * 16);
     ySlider->setValue(345 * 16);
     zSlider->setValue(0 * 16);
+    viewSlider->setValue(-2);
 
-    setWindowTitle(tr("Hello GL"));
+    setWindowTitle(tr("Generate 3D Model + stl. Files"));
 }
 
 QSlider *Window::createSlider()
@@ -56,6 +65,16 @@ QSlider *Window::createSlider()
     slider->setSingleStep(16);
     slider->setPageStep(15 * 16);
     slider->setTickInterval(15 * 16);
+    slider->setTickPosition(QSlider::TicksRight);
+    return slider;
+}
+
+QSlider *Window::createSlider2()
+{
+    QSlider *slider = new QSlider(Qt::Vertical);
+    slider->setMinimum(-10);
+    slider->setMaximum(-1);
+    slider->setSliderPosition(-2);
     slider->setTickPosition(QSlider::TicksRight);
     return slider;
 }

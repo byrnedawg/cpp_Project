@@ -9,6 +9,7 @@ GLWidget::GLWidget(QWidget *parent)
       m_xRot(0),
       m_yRot(0),
       m_zRot(0),
+      m_viewDis(-2),
       m_program(0)
 {
     m_core = QCoreApplication::arguments().contains(QStringLiteral("--coreprofile"));
@@ -75,10 +76,20 @@ void GLWidget::setZRotation(int angle)
     }
 }
 
+void GLWidget::setView(int distance)
+{
+    if (distance != m_viewDis) {
+        m_viewDis = distance;
+        m_camera.translate(0, 0, distance); //sets camera distance
+        emit viewDistanceChanged(distance);
+        update();
+    }
+}
+
 void GLWidget::cleanup()
 {
     makeCurrent();
-    m_logoVbo.destroy();
+    m_model3DVbo.destroy();
     delete m_program;
     m_program = 0;
     doneCurrent();
@@ -165,32 +176,33 @@ void GLWidget::initializeGL()
     QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
     // Setup our vertex buffer object.
-    m_logoVbo.create();
-    m_logoVbo.bind();
-    m_logoVbo.allocate(m_logo.constData(), m_logo.count() * sizeof(GLfloat));
+    m_model3DVbo.create();
+    m_model3DVbo.bind();
+    m_model3DVbo.allocate(m_model3D.constData(), m_model3D.count() * sizeof(GLfloat));
 
     // Store the vertex attribute bindings for the program.
     setupVertexAttribs();
 
     // Our camera never changes in this example.
     m_camera.setToIdentity();
-    m_camera.translate(0, 0, -1);
+   // m_camera.translate(0, 0, -1);
+    m_camera.translate(0, 0, m_viewDis); //sets camera distance
 
     // Light position is fixed.
-    m_program->setUniformValue(m_lightPosLoc, QVector3D(0, 0, 70));
+    m_program->setUniformValue(m_lightPosLoc, QVector3D(0, 0, 70)); // sets lighting
 
     m_program->release();
 }
 
 void GLWidget::setupVertexAttribs()
 {
-    m_logoVbo.bind();
+    m_model3DVbo.bind();
     QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
     f->glEnableVertexAttribArray(0);
     f->glEnableVertexAttribArray(1);
     f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), 0);
     f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void *>(3 * sizeof(GLfloat)));
-    m_logoVbo.release();
+    m_model3DVbo.release();
 }
 
 void GLWidget::paintGL()
@@ -211,7 +223,8 @@ void GLWidget::paintGL()
     QMatrix3x3 normalMatrix = m_world.normalMatrix();
     m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
 
-    glDrawArrays(GL_TRIANGLES, 0, m_logo.vertexCount());
+    glDrawArrays(GL_TRIANGLES, 0, m_model3D.vertexCount());
+
 
     m_program->release();
 }
@@ -219,7 +232,9 @@ void GLWidget::paintGL()
 void GLWidget::resizeGL(int w, int h)
 {
     m_proj.setToIdentity();
-    m_proj.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
+    //m_proj.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
+   // m_proj.perspective(100.0f, GLfloat(w) / h, 0.00f, 100.0f);
+    m_proj.perspective(45.0f,GLfloat(w) / h, 0.01f, 100.0f);
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event)

@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QVector3D>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -16,14 +17,16 @@ public:
     int count() const { return m_count; }
     int vertexCount() const { return m_count / 6; }
 
+    ofstream stlWriter; // output file object to write stl file data
+
 private:
     void quad(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, GLfloat x4, GLfloat y4, GLfloat quadThickness);
-    void quadZ(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, GLfloat x4, GLfloat y4, GLfloat z, GLfloat zHeight);
+    void quad(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat y3, GLfloat x4, GLfloat y4, GLfloat z, GLfloat zHeight);
     void extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat extrudeThickness);
-    void extrudeZ(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat z, GLfloat zHeight);
+    void extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat z, GLfloat zHeight);
     void add(const QVector3D &v, const QVector3D &n);
     void rectangle(GLfloat x, GLfloat y, GLfloat L, GLfloat W, GLfloat H);
-    void rectangleZ(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLfloat height);
+    void rectangle(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLfloat height);
 
 
 
