@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_GLWidget_t {
-    QByteArrayData data[10];
-    char stringdata0[114];
+    QByteArrayData data[13];
+    char stringdata0[151];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,15 +35,19 @@ QT_MOC_LITERAL(2, 26, 0), // ""
 QT_MOC_LITERAL(3, 27, 5), // "angle"
 QT_MOC_LITERAL(4, 33, 16), // "yRotationChanged"
 QT_MOC_LITERAL(5, 50, 16), // "zRotationChanged"
-QT_MOC_LITERAL(6, 67, 12), // "setXRotation"
-QT_MOC_LITERAL(7, 80, 12), // "setYRotation"
-QT_MOC_LITERAL(8, 93, 12), // "setZRotation"
-QT_MOC_LITERAL(9, 106, 7) // "cleanup"
+QT_MOC_LITERAL(6, 67, 19), // "viewDistanceChanged"
+QT_MOC_LITERAL(7, 87, 8), // "distance"
+QT_MOC_LITERAL(8, 96, 12), // "setXRotation"
+QT_MOC_LITERAL(9, 109, 12), // "setYRotation"
+QT_MOC_LITERAL(10, 122, 12), // "setZRotation"
+QT_MOC_LITERAL(11, 135, 7), // "setView"
+QT_MOC_LITERAL(12, 143, 7) // "cleanup"
 
     },
     "GLWidget\0xRotationChanged\0\0angle\0"
     "yRotationChanged\0zRotationChanged\0"
-    "setXRotation\0setYRotation\0setZRotation\0"
+    "viewDistanceChanged\0distance\0setXRotation\0"
+    "setYRotation\0setZRotation\0setView\0"
     "cleanup"
 };
 #undef QT_MOC_LITERAL
@@ -54,33 +58,37 @@ static const uint qt_meta_data_GLWidget[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       3,       // signalCount
+       4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   49,    2, 0x06 /* Public */,
-       4,    1,   52,    2, 0x06 /* Public */,
-       5,    1,   55,    2, 0x06 /* Public */,
+       1,    1,   59,    2, 0x06 /* Public */,
+       4,    1,   62,    2, 0x06 /* Public */,
+       5,    1,   65,    2, 0x06 /* Public */,
+       6,    1,   68,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    1,   58,    2, 0x0a /* Public */,
-       7,    1,   61,    2, 0x0a /* Public */,
-       8,    1,   64,    2, 0x0a /* Public */,
-       9,    0,   67,    2, 0x0a /* Public */,
+       8,    1,   71,    2, 0x0a /* Public */,
+       9,    1,   74,    2, 0x0a /* Public */,
+      10,    1,   77,    2, 0x0a /* Public */,
+      11,    1,   80,    2, 0x0a /* Public */,
+      12,    0,   83,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    7,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void,
 
        0        // eod
@@ -95,10 +103,12 @@ void GLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 0: _t->xRotationChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 1: _t->yRotationChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->zRotationChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->setXRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->setYRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->setZRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 6: _t->cleanup(); break;
+        case 3: _t->viewDistanceChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->setXRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->setYRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->setZRotation((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->setView((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->cleanup(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -120,6 +130,12 @@ void GLWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             typedef void (GLWidget::*_t)(int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&GLWidget::zRotationChanged)) {
                 *result = 2;
+            }
+        }
+        {
+            typedef void (GLWidget::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&GLWidget::viewDistanceChanged)) {
+                *result = 3;
             }
         }
     }
@@ -152,13 +168,13 @@ int GLWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }
@@ -182,5 +198,12 @@ void GLWidget::zRotationChanged(int _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void GLWidget::viewDistanceChanged(int _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_END_MOC_NAMESPACE

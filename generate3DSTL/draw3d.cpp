@@ -15,6 +15,8 @@ Draw3D::Draw3D()
 
     rectangle(0,0,-0.1f,0.4f,0.25f,0.2f); //rectangle x, y, z, length, width, height
     rectangle(0,0,0.1f,0.2f,0.2f,0.3f); //rectangle x, y, z, length, width, height
+    rectangle(0,.2f, -0.2f, 0.2f, 0.5f, .07f);
+    rectangle(-.3,-.2f, -0.2f, 0.2f, 0.5f, .07f);
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
