@@ -4,7 +4,8 @@
 Draw3D::Draw3D()
     : m_count(0)
 {
-    m_data.resize(2500 * 6); //allocate space for data
+    //m_data.resize(2500 * 6); //allocate space for data
+    m_data.resize(10000 * 6); //allocate space for data
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
@@ -13,49 +14,24 @@ Draw3D::Draw3D()
 
     //3D figures in stl file and 3D model space
 
-    rectangle(0,0,-0.1f,0.4f,0.25f,0.2f); //rectangle x, y, z, length, width, height
-    rectangle(0,0,0.1f,0.2f,0.2f,0.3f); //rectangle x, y, z, length, width, height
-    rectangle(0,.2f, -0.2f, 0.2f, 0.5f, .07f);
-    rectangle(-.3,-.2f, -0.2f, 0.2f, 0.5f, .07f);
+  //  rectangle(0,0,-0.1f,0.4f,0.25f,0.2f); //rectangle x, y, z, length, width, height
+  //  rectangle(0,0,0.1f,0.2f,0.2f,0.3f); //rectangle x, y, z, length, width, height
+  //  rectangle(0,.2f, -0.2f, 0.2f, 0.5f, .07f);
+    rectangle(0, 0, -0.8, 0.2f, 0.2f, .5f);
+    cylinder(-0.5f, -0.5f,-0.2f,0.3f,0.3f,100); //cylinder x, y, z, radius, height, NumSectors
+    cylinder(0.0f, 0.0, -0.2f,0.2f,0.5f,100); //cylinder x, y, z, radius, height, NumSectors
+    cylinder(0.5f, 0.5f, 0.2f, 0.1f ,0.25f,0.5f,100); //cylinder x, y, z, inRadius, outRadius height, NumSectors
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
     stlWriter.close(); // close stl file
-}
 
 
     //Done drawing model .....................................................
 
 
-
-/*
-    const int NumSectors = 100; //100
-
-    for (int i = 0; i < NumSectors; ++i) {
-        GLfloat angle = (i * 2 * M_PI) / NumSectors;
-        GLfloat angleSin = qSin(angle);
-        GLfloat angleCos = qCos(angle);
-        const GLfloat x5 = 0.30f * angleSin;
-        const GLfloat y5 = 0.30f * angleCos;
-        const GLfloat x6 = 0.20f * angleSin; //.20
-        const GLfloat y6 = 0.20f * angleCos; //.20
-
-        angle = ((i + 1) * 2 * M_PI) / NumSectors;
-        angleSin = qSin(angle);
-        angleCos = qCos(angle);
-        const GLfloat x7 = 0.20f * angleSin; //.20
-        const GLfloat y7 = 0.20f * angleCos; //.20
-        const GLfloat x8 = 0.30f * angleSin;
-        const GLfloat y8 = 0.30f * angleCos;
-
-    }
-    // GLfloat thickness22 = 0.1f;
-    //    quad(x5, y5, x6, y6, x7, y7, x8, y8, thickness22);
-
-      //  extrude(x6, y6, x7, y7, thickness22);
-        //extrude(x8, y8, x5, y5, thickness22);
 }
-*/
+
 //Add the vertexes for the normal n and the vertex v from the 3D shapes definition and output the vertex values to the stl file
 void Draw3D::add(const QVector3D &v, const QVector3D &n)
 {
@@ -229,5 +205,57 @@ void Draw3D::rectangle(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat 
     extrude(x + length, y, x + length, y + width, z, height);
     extrude(x + length, y + width, x, y + width, z, height);
     extrude(x, y + width, x, y, z, height);
+}
+
+void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat height, int NumSectors){
+
+    for (int i = 0; i < NumSectors; ++i) {
+        GLfloat angle = (i * 2 * M_PI) / NumSectors;
+        GLfloat angleSin = qSin(angle);
+        GLfloat angleCos = qCos(angle);
+        GLfloat x1 = radius * angleSin + x;
+        GLfloat y1 = radius * angleCos + y;
+        GLfloat x2 = 0 * angleSin + x;
+        GLfloat y2 = 0 * angleCos + y;
+
+        angle = ((i + 1) * 2 * M_PI) / NumSectors;
+        angleSin = qSin(angle);
+        angleCos = qCos(angle);
+        GLfloat x3 = 0 * angleSin + x;
+        GLfloat y3 = 0 * angleCos + y;
+        GLfloat x4 = radius * angleSin + x;
+        GLfloat y4 = radius * angleCos + y;
+
+        quad(x1, y1, x2, y2, x3, y3, x4, y4, z, height);
+
+        extrude(x2, y2, x3, y3, z, height);
+        extrude(x4, y4, x1, y1, z,  height);
+    }
+}
+
+void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius, GLfloat outRadius, GLfloat height, int NumSectors){
+
+    for (int i = 0; i < NumSectors; ++i) {
+        GLfloat angle = (i * 2 * M_PI) / NumSectors;
+        GLfloat angleSin = qSin(angle);
+        GLfloat angleCos = qCos(angle);
+        GLfloat x1 = outRadius * angleSin + x;
+        GLfloat y1 = outRadius * angleCos + y;
+        GLfloat x2 = inRadius * angleSin + x;
+        GLfloat y2 = inRadius * angleCos + y;
+
+        angle = ((i + 1) * 2 * M_PI) / NumSectors;
+        angleSin = qSin(angle);
+        angleCos = qCos(angle);
+        GLfloat x3 = inRadius * angleSin + x;
+        GLfloat y3 = inRadius * angleCos + y;
+        GLfloat x4 = outRadius * angleSin + x;
+        GLfloat y4 = outRadius * angleCos + y;
+
+        quad(x1, y1, x2, y2, x3, y3, x4, y4, z, height);
+
+        extrude(x2, y2, x3, y3, z, height);
+        extrude(x4, y4, x1, y1, z,  height);
+    }
 }
 

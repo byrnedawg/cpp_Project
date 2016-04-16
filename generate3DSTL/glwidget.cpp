@@ -9,7 +9,7 @@ GLWidget::GLWidget(QWidget *parent)
       m_xRot(0),
       m_yRot(0),
       m_zRot(0),
-      m_viewDis(-2),
+      m_viewDis(-3),
       m_program(0)
 {
     m_core = QCoreApplication::arguments().contains(QStringLiteral("--coreprofile"));
