@@ -17,10 +17,15 @@ Draw3D::Draw3D()
   //  rectangle(0,0,-0.1f,0.4f,0.25f,0.2f); //rectangle x, y, z, length, width, height
   //  rectangle(0,0,0.1f,0.2f,0.2f,0.3f); //rectangle x, y, z, length, width, height
   //  rectangle(0,.2f, -0.2f, 0.2f, 0.5f, .07f);
-    rectangle(0, 0, -0.8, 0.2f, 0.2f, .5f);
-    cylinder(-0.5f, -0.5f,-0.2f,0.3f,0.3f,100); //cylinder x, y, z, radius, height, NumSectors
-    cylinder(0.0f, 0.0, -0.2f,0.2f,0.5f,100); //cylinder x, y, z, radius, height, NumSectors
-    cylinder(0.5f, 0.5f, 0.2f, 0.1f ,0.25f,0.5f,100); //cylinder x, y, z, inRadius, outRadius height, NumSectors
+    //rectangle(0, 0, -0.8, 0.2f, 0.2f, .5f);
+    extrudedRectangle(-0.3f, -0.3f, -0.0f, 0.6f, 0.6f, 0.4f, 0.05f); //extrudedRectangle x, y, z, length, width, height, thickness
+   // cylinder(-0.5f, -0.5f,-0.2f,0.3f,0.3f,100); //cylinder x, y, z, radius, height, NumSectors
+    //cylinder(0.0f, 0.0, -0.2f,0.2f,0.5f,100); //cylinder x, y, z, radius, height, NumSectors
+    extrudedCylinder(0.0f, 0.0f, -0.4f, 0.1f ,0.25f,0.8f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
+  //  pyramid(0,0,0, 0.4f, 0.6f, 0.7f); //pyramid x, y, z, length, width, height
+
+    pyramid(0.4f, 0.4f, 0.0f, 0.4f, 0.4f, 0.5f); //pyramid x, y, z, length, width, height
+    pyramid(0.4f, 0.4f, 0.0f, 0.4f, 0.4f, -0.5f);//pyramid negative height flips over the pyramid
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -207,6 +212,7 @@ void Draw3D::rectangle(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat 
     extrude(x, y + width, x, y, z, height);
 }
 
+// Draw a 3D cylinder defining x, y, z, radius, height, numSectos - which determines how smooth it looks
 void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat height, int NumSectors){
 
     for (int i = 0; i < NumSectors; ++i) {
@@ -233,7 +239,9 @@ void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat h
     }
 }
 
-void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius, GLfloat outRadius, GLfloat height, int NumSectors){
+// Draw a 3D extrudedCylinder defining x, y, z, inRadius, outRadius, height, numSectos - which determines how smooth it looks
+// Creates a pipe like cylinder where the inner radius is extruded out
+void Draw3D::extrudedCylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius, GLfloat outRadius, GLfloat height, int NumSectors){
 
     for (int i = 0; i < NumSectors; ++i) {
         GLfloat angle = (i * 2 * M_PI) / NumSectors;
@@ -258,4 +266,102 @@ void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius, GLfloat
         extrude(x4, y4, x1, y1, z,  height);
     }
 }
+
+// Draw a 3D extrudedRectangle defining x, y, z, length, width, height, thickness - determines the wall thickness
+// Creates a extruded rectangle where the inner rectangle is extruded out
+void Draw3D::extrudedRectangle(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLfloat height, GLfloat thickness){
+   rectangle(x, y, z, thickness, width, height);
+   rectangle(x + thickness, y, z, length - thickness, thickness, height);
+   rectangle(x + length - thickness, y, z, thickness, width, height);
+   rectangle(x + thickness, y + width - thickness, z, length - thickness, thickness, height);
+}
+
+// Draw a 3D pyramid defining x, y, z, length, width, height
+// Creates a 3D pyramid with the top point at the center of the length and width and at the point of the height
+void Draw3D::pyramid(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLfloat height){
+
+    GLfloat x1 = x;
+    GLfloat y1 = y;
+    GLfloat x2 = x + length;
+    GLfloat y2 = y;
+    GLfloat x3 = x + length;
+    GLfloat y3 = y + width;
+    GLfloat x4 = x;
+    GLfloat y4 = y + width;
+    GLfloat x5 = x + (length / 2);
+    GLfloat y5 = y + (width / 2);
+    GLfloat z5 = z + height;
+
+    QVector3D n = QVector3D::normal(QVector3D(x4 - x1, y4 - y1, 0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x1, y1, z), n);
+    add(QVector3D(x4, y4, z), n);
+    add(QVector3D(x2, y2, z), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x3, y3, z), n);
+    add(QVector3D(x2, y2, z), n);
+    add(QVector3D(x4, y4, z), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    n = QVector3D::normal(QVector3D(x5 - x1, y5 - y1, 0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x1, y1, z), n);
+    add(QVector3D(x2, y2, z ), n);
+    add(QVector3D(x5, y5, z5), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    n = QVector3D::normal(QVector3D(x5 - x2, y5 - y2, 0.0f), QVector3D(x3 - x2, y3 - y2, 0.0f));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x2, y2, z), n);
+    add(QVector3D(x3, y3, z ), n);
+    add(QVector3D(x5, y5, z5), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    n = QVector3D::normal(QVector3D(x5 - x3, y5 - y3, 0.0f), QVector3D(x4 - x3, y4 - y3, 0.0f));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x3, y3, z), n);
+    add(QVector3D(x4, y4, z ), n);
+    add(QVector3D(x5, y5, z5), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    n = QVector3D::normal(QVector3D(x5 - x4, y5 - y4, 0.0f), QVector3D(x1 - x4, y1 - y4, 0.0f));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x4, y4, z), n);
+    add(QVector3D(x1, y1, z ), n);
+    add(QVector3D(x5, y5, z5), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+}
+
+
 
