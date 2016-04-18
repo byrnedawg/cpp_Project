@@ -53,7 +53,7 @@ Window::Window(MainWindow *mw)
     xSlider->setValue(15 * 16);
     ySlider->setValue(345 * 16);
     zSlider->setValue(0 * 16);
-    viewSlider->setValue(1);
+    viewSlider->setValue(0);
 
     setWindowTitle(tr("Generate 3D Model + stl. Files"));
 }
@@ -73,11 +73,11 @@ QSlider *Window::createSlider2()
 {
     QSlider *slider = new QSlider(Qt::Vertical);
     slider->setValue(0);
-    slider->setMinimum(-5);
-    slider->setMaximum(5);
+    slider->setMinimum(-20);
+    slider->setMaximum(20);
     slider->setSingleStep(5);
     slider->setSliderPosition(0);
-    slider->setTickInterval(10);
+    slider->setTickInterval(5);
     slider->setTickPosition(QSlider::TicksRight);
     return slider;
 }

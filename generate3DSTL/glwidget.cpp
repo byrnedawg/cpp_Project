@@ -79,11 +79,20 @@ void GLWidget::setZRotation(int angle)
 void GLWidget::setView(int distance)
 {
     if (distance != m_viewDis) {
-        m_viewDis = distance;
-        cout << "View Distance = " << m_viewDis << '\n';
-        m_camera.translate(0, 0, m_viewDis/10.0f); //sets camera distance
-        emit viewDistanceChanged(distance);
-        update();
+        if(distance < m_viewDis)
+        {
+            m_viewDis = distance;
+            cout << "View Distance = " << m_viewDis << '\n';
+            m_camera.translate(0, 0, -0.25f); //sets camera distance
+            emit viewDistanceChanged(distance);
+            update();
+        }else{
+            m_viewDis = distance;
+            cout << "View Distance = " << m_viewDis << '\n';
+            m_camera.translate(0, 0, 0.25f); //sets camera distance
+            emit viewDistanceChanged(distance);
+            update();
+        }
     }
 }
 
