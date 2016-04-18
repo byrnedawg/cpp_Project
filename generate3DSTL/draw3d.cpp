@@ -16,7 +16,7 @@ Draw3D::Draw3D()
 
   //  rectangle(0,0,-0.1f,0.4f,0.25f,0.2f); //rectangle x, y, z, length, width, height
   //  rectangle(0,0,0.1f,0.2f,0.2f,0.3f); //rectangle x, y, z, length, width, height
-  //  rectangle(0,.2f, -0.2f, 0.2f, 0.5f, .07f);
+    rectangle(0,.5f, -0.2f, 0.2f, 0.5f, .07f);
     //rectangle(0, 0, -0.8, 0.2f, 0.2f, .5f);
     extrudedRectangle(-0.3f, -0.3f, -0.0f, 0.6f, 0.6f, 0.4f, 0.05f); //extrudedRectangle x, y, z, length, width, height, thickness
    // cylinder(-0.5f, -0.5f,-0.2f,0.3f,0.3f,100); //cylinder x, y, z, radius, height, NumSectors
@@ -25,7 +25,8 @@ Draw3D::Draw3D()
   //  pyramid(0,0,0, 0.4f, 0.6f, 0.7f); //pyramid x, y, z, length, width, height
 
     pyramid(0.4f, 0.4f, 0.0f, 0.4f, 0.4f, 0.5f); //pyramid x, y, z, length, width, height
-    pyramid(0.4f, 0.4f, 0.0f, 0.4f, 0.4f, -0.5f);//pyramid negative height flips over the pyramid
+    pyramid(-0.4f, -0.4f, 0.5f, 0.6f, 0.6f, 0.7f); //pyramid x, y, z, length, width, height
+  //  pyramid(0.4f, 0.4f, 0.0f, 0.4f, 0.4f, -0.5f);//pyramid negative height flips over the pyramid
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -148,14 +149,15 @@ void Draw3D::quad(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GL
 //Draw extrudes to define a 3D rectangle with z defined as the center of the rectangles height and output the vertex information into a stl file in the correct format
 void Draw3D::extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat extrudeThickness)
 {
-    QVector3D n = QVector3D::normal(QVector3D(0.0f, 0.0f, -0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f)); //QVector3D(0.0f, 0.0f, -0.1f) ???
+    QVector3D n = QVector3D::normal(QVector3D(0.0f, 0.0f, 0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f)); //QVector3D(0.0f, 0.0f, -0.1f) ???
+
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
 
-    add(QVector3D(x1, y1, +extrudeThickness), n);
+    add(QVector3D(x1, y1, extrudeThickness), n);
     add(QVector3D(x1, y1, -extrudeThickness), n);
-    add(QVector3D(x2, y2, +extrudeThickness), n);
+    add(QVector3D(x2, y2, extrudeThickness), n);
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
@@ -164,7 +166,7 @@ void Draw3D::extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat ext
     stlWriter << "outer loop \n";
 
     add(QVector3D(x2, y2, -extrudeThickness), n);
-    add(QVector3D(x2, y2, +extrudeThickness), n);
+    add(QVector3D(x2, y2, extrudeThickness), n);
     add(QVector3D(x1, y1, -extrudeThickness), n);
 
     stlWriter << "endloop\n";
@@ -173,7 +175,7 @@ void Draw3D::extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat ext
 
 //Draw extrudes to define a 3D rectangle with z defined and output the vertex information into a stl file in the correct format
 void Draw3D::extrude(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat z, GLfloat zHeight){
-    QVector3D n = QVector3D::normal(QVector3D(0.0f, 0.0f, -0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f));
+    QVector3D n = QVector3D::normal(QVector3D(0.0f, 0.0f, z - z+zHeight), QVector3D(x2 - x1, y2 - y1, 0));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
@@ -235,7 +237,7 @@ void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat h
         quad(x1, y1, x2, y2, x3, y3, x4, y4, z, height);
 
         extrude(x2, y2, x3, y3, z, height);
-        extrude(x4, y4, x1, y1, z,  height);
+        extrude(x4, y4, x1, y1, z, height);
     }
 }
 
@@ -314,50 +316,49 @@ void Draw3D::pyramid(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat wi
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
 
-    n = QVector3D::normal(QVector3D(x5 - x1, y5 - y1, 0.0f), QVector3D(x2 - x1, y2 - y1, 0.0f));
-
+    n = QVector3D::normal(QVector3D(x1 - x5, y1 - y5, z - z5), QVector3D(x2 - x5, y2 - y5, z - z5));
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
 
+    add(QVector3D(x5, y5, z5), n);
     add(QVector3D(x1, y1, z), n);
     add(QVector3D(x2, y2, z ), n);
-    add(QVector3D(x5, y5, z5), n);
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
 
-    n = QVector3D::normal(QVector3D(x5 - x2, y5 - y2, 0.0f), QVector3D(x3 - x2, y3 - y2, 0.0f));
+    n = QVector3D::normal(QVector3D(x2 - x5, y2 - y5, z - z5), QVector3D(x3 - x5, y3 - y5, z - z5));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
 
+    add(QVector3D(x5, y5, z5), n);
     add(QVector3D(x2, y2, z), n);
     add(QVector3D(x3, y3, z ), n);
-    add(QVector3D(x5, y5, z5), n);
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
 
-    n = QVector3D::normal(QVector3D(x5 - x3, y5 - y3, 0.0f), QVector3D(x4 - x3, y4 - y3, 0.0f));
+    n = QVector3D::normal(QVector3D(x3 - x5, y3 - y5, z - z5), QVector3D(x4 - x5, y4 - y5, z - z5));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
 
+    add(QVector3D(x5, y5, z5), n);
     add(QVector3D(x3, y3, z), n);
     add(QVector3D(x4, y4, z ), n);
-    add(QVector3D(x5, y5, z5), n);
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
 
-    n = QVector3D::normal(QVector3D(x5 - x4, y5 - y4, 0.0f), QVector3D(x1 - x4, y1 - y4, 0.0f));
+    n = QVector3D::normal(QVector3D(x4 - x5, y4 - y5, z - z5), QVector3D(x1 - x5, y1 - y5, z - z5));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
 
+    add(QVector3D(x5, y5, z5), n);
     add(QVector3D(x4, y4, z), n);
     add(QVector3D(x1, y1, z ), n);
-    add(QVector3D(x5, y5, z5), n);
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
