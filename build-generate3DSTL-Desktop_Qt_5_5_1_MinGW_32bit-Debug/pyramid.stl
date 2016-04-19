@@ -1,0 +1,44 @@
+solid model
+facet normal 0 0 -1
+outer loop 
+vertex 8 8 1
+vertex 8 12 1
+vertex 12 8 1
+endloop
+endfacet
+facet normal 0 0 -1
+outer loop 
+vertex 12 12 1
+vertex 12 8 1
+vertex 8 12 1
+endloop
+endfacet
+facet normal 0 -0.928477 0.371391
+outer loop 
+vertex 10 10 6
+vertex 8 8 1
+vertex 12 8 1
+endloop
+endfacet
+facet normal 0.928477 0 0.371391
+outer loop 
+vertex 10 10 6
+vertex 12 8 1
+vertex 12 12 1
+endloop
+endfacet
+facet normal 0 0.928477 0.371391
+outer loop 
+vertex 10 10 6
+vertex 12 12 1
+vertex 8 12 1
+endloop
+endfacet
+facet normal -0.928477 0 0.371391
+outer loop 
+vertex 10 10 6
+vertex 8 12 1
+vertex 8 8 1
+endloop
+endfacet
+endsolid model

@@ -9,7 +9,7 @@ GLWidget::GLWidget(QWidget *parent)
       m_xRot(0),
       m_yRot(0),
       m_zRot(0),
-      m_viewDis(-3),
+      m_viewDis(-300),
       m_program(0)
 {
     m_core = QCoreApplication::arguments().contains(QStringLiteral("--coreprofile"));
@@ -79,21 +79,30 @@ void GLWidget::setZRotation(int angle)
 void GLWidget::setView(int distance)
 {
     if (distance != m_viewDis) {
+        m_camera.setToIdentity();
+        m_viewDis = distance;
+        m_camera.translate(0, 0, m_viewDis/10.0f); //sets camera distance
+        emit viewDistanceChanged(distance);
+        update();
+    }
+        /*
         if(distance < m_viewDis)
         {
             m_viewDis = distance;
             cout << "View Distance = " << m_viewDis << '\n';
-            m_camera.translate(0, 0, -0.25f); //sets camera distance
+            //m_camera.translate(0, 0, -0.25f); //sets camera distance
+            m_camera.translate(0, 0, m_viewDis); //sets camera distance
             emit viewDistanceChanged(distance);
             update();
         }else{
             m_viewDis = distance;
             cout << "View Distance = " << m_viewDis << '\n';
-            m_camera.translate(0, 0, 0.25f); //sets camera distance
+           // m_camera.translate(0, 0, 0.25f); //sets camera distance
+             m_camera.translate(0, 0, m_viewDis); //sets camera distance
             emit viewDistanceChanged(distance);
             update();
         }
-    }
+    }*/
 }
 
 void GLWidget::cleanup()
@@ -196,7 +205,7 @@ void GLWidget::initializeGL()
     // Our camera never changes in this example.
     m_camera.setToIdentity();
    // m_camera.translate(0, 0, -1);
-    m_camera.translate(0, 0, m_viewDis); //sets camera distance
+    m_camera.translate(0, 0, -300/10.0f); //sets camera distance
 
     // Light position is fixed.
     m_program->setUniformValue(m_lightPosLoc, QVector3D(0, 0, 70)); // sets lighting
@@ -244,7 +253,7 @@ void GLWidget::resizeGL(int w, int h)
     m_proj.setToIdentity();
     //m_proj.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
    // m_proj.perspective(100.0f, GLfloat(w) / h, 0.00f, 100.0f);
-    m_proj.perspective(45.0f,GLfloat(w) / h, 0.01f, 100.0f);
+    m_proj.perspective(45.0f,GLfloat(w) / h, 0.01f, 300.0f); // max is 300
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event)

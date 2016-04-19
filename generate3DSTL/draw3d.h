@@ -35,6 +35,12 @@ private:
     void extrudedCylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius, GLfloat outRadius, GLfloat height, int NumSectors);
     void pyramid(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLfloat height);
     void cone(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat height, int NumSectors, bool cap);
+    /****************************************************************************************************************/
+    //Writen by Shaotu Jia
+    void sphere(GLfloat x, GLfloat y, GLfloat z, GLfloat Radius, int Numsectors);
+    void quad2(GLfloat x, GLfloat y, GLfloat z, GLfloat x1, GLfloat y1, GLfloat z2, GLfloat x4, GLfloat y4, GLfloat z4, int NumSectors, GLfloat radius, GLfloat angle, GLfloat anglez);
+
+    /***************************************************************************************************************************************************************************************/
 
     QVector<GLfloat> m_data;
     int m_count;
