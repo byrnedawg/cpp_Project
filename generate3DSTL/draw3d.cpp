@@ -9,23 +9,23 @@ Draw3D::Draw3D()
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
-    stlWriter.open ("coneOpen.stl"); //name of stl file
+    stlWriter.open ("sphere.stl"); //name of stl file
     stlWriter << "solid model\n"; //first line of stl file
 
     //3D figures in stl file and 3D model space
 
-      //rectangle(0.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
-     // extrudedRectangle(0.0f, 0.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
-      //cylinder(8.0f, -8.0f,-2.0f,3.0f,3.0f,8); //cylinder x, y, z, radius, height, NumSectors - 8 creates octagon
-     // cylinder(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
-      //extrudedCylinder(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-     //pyramid(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
-     //pyramid(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
-      cone(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, false); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
-    //  tetrahedron(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
-     // tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
+     // rectangle(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
+     // extrudedRectangle(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
+     // cylinder(8.0f, -8.0f,-2.0f,3.0f,3.0f,8); //cylinder x, y, z, radius, height, NumSectors - 8 creates octagon
+    //  cylinder(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
+    // extrudedCylinder(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
+    // pyramid(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
+    // pyramid(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
+     // cone(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, true); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
+     // tetrahedron(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
+      //tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
 
-     // sphere(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
+     sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -618,23 +618,23 @@ void Draw3D::quad2(GLfloat x,GLfloat y,GLfloat z,GLfloat x1,GLfloat y1,GLfloat z
 void Draw3D::sphere(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors){
 
     for (int j=0; j<NumSectors;j++){
-    GLfloat anglez=(j*M_PI)/(NumSectors*2);     //anglez is the angle between x-y plane and vector from origin to the point on spherical surface
-                                                 //Range[0-90degree]
-    GLfloat angle = (0 * 2 * M_PI) / NumSectors; //angle is the angle between x-axis and point which is on the spherical surface
-    GLfloat angleSin = qSin(angle);
-    GLfloat angleCos = qCos(angle);
-    GLfloat x1 = radius * angleCos*qCos(anglez) + x;   //initialze (x1,y1,z1) and (x4,y4,z4)
-    GLfloat y1 = radius * angleSin*qCos(anglez) + y;
-    GLfloat z1 =radius * qSin(anglez)+z;
-    GLfloat x4=0.0;
-    GLfloat y4 = 0.0;
-    GLfloat z4=0.0;
-    GLfloat zn1=0.0;   //zn1 and zn4 are the reflection of coordinate of (x1,y1,z1) and (x4,y4,z4) based on x-y plane
-    GLfloat zn4=0.0;
+        GLfloat anglez=(j*M_PI)/(NumSectors*2);     //anglez is the angle between x-y plane and vector from origin to the point on spherical surface
+                                                     //Range[0-90degree]
+        GLfloat angle = (0 * 2 * M_PI) / NumSectors; //angle is the angle between x-axis and point which is on the spherical surface
+        GLfloat angleSin = qSin(angle);
+        GLfloat angleCos = qCos(angle);
+        GLfloat x1 = radius * angleCos*qCos(anglez) + x;   //initialze (x1,y1,z1) and (x4,y4,z4)
+        GLfloat y1 = radius * angleSin*qCos(anglez) + y;
+        GLfloat z1 =radius * qSin(anglez)+z;
+        GLfloat x4=0.0;
+        GLfloat y4 = 0.0;
+        GLfloat z4=0.0;
+        GLfloat zn1=0.0;   //zn1 and zn4 are the reflection of coordinate of (x1,y1,z1) and (x4,y4,z4) based on x-y plane
+        GLfloat zn4=0.0;
 
-    for (int i=0; i < NumSectors; ++i) {
+        for (int i=0; i < NumSectors; ++i) {
 
-        angle = (i * 2 * M_PI) / NumSectors;
+            angle = (i * 2 * M_PI) / NumSectors;
 
             x4 = radius * qCos(angle+2*M_PI/NumSectors)*qCos(anglez+2*M_PI/NumSectors) + x;
             y4 = radius * qSin(angle+2*M_PI/NumSectors)*qCos(anglez+2*M_PI/NumSectors) + y;
@@ -648,14 +648,113 @@ void Draw3D::sphere(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSect
             y1=radius*qSin(angle+2*M_PI/NumSectors)*qCos(anglez)+y;
             z1=radius * qSin(anglez)+z;
 
-        }
-    x1 = x4;
-    y1 = y4;
-    z1 = z4;
-    zn1=zn4;
-}
+            }
+        x1 = x4;
+        y1 = y4;
+        z1 = z4;
+        zn1=zn4;
+    }
 
 }
+
+void Draw3D::face2(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x4, GLfloat y4, GLfloat z4,int NumSectors, GLfloat radius,GLfloat angle,GLfloat anglez){
+    GLfloat alpha=2*M_PI/NumSectors;
+    //QVector3D n= QVector3D((x1+x4)/2-x,(y1+y4)/2-y,(z1+z4)/2-z);
+    QVector3D n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x2 - x4, y2 - y4, z2 - z4));
+   //QVector3D n = QVector3D::normal(QVector3D(radius*qCos(anglez+alpha*qCos(angle))+x - x1, radius*qCos(anglez+alpha)*qSin(angle)+y-y1, z4-z1), QVector3D(radius*qCos(angle+alpha)+x-x1, radius*qSin(angle+alpha)+y-y1, z1-z1));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+
+    add(QVector3D(x4, y4, z4), n);
+    add(QVector3D(x1, y1, z1), n);
+    add(QVector3D(x2, y2, z2), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x2, y2, z2), n);
+    add(QVector3D(radius*qCos(angle+alpha)*qCos(anglez)+x1, radius*qSin(angle+alpha)*qCos(anglez)+y1, z1), n);
+    add(QVector3D(x2, y2, z2), n);
+
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    /*
+    QVector3D n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x2 - x4, y2 - y4, z2 - z4));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x4, y4, z4), n);
+    add(QVector3D(x1, y1, z1), n);
+    add(QVector3D(x2, y2, z2), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x2, y2, z2), n);
+    add(QVector3D(x3, y3, z3), n);
+    add(QVector3D(x4, y4, z4), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+*/
+
+}
+
+void Draw3D::sphere2(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors){
+
+    for (int j=0; j<NumSectors;j++){
+        GLfloat anglez=(j*M_PI)/(NumSectors*2);     //anglez is the angle between x-y plane and vector from origin to the point on spherical surface
+                                                     //Range[0-90degree]
+        GLfloat angle = (0 * 2 * M_PI) / NumSectors; //angle is the angle between x-axis and point which is on the spherical surface
+        GLfloat angleSin = qSin(angle);
+        GLfloat angleCos = qCos(angle);
+        GLfloat x1 = radius * angleCos*qCos(anglez) + x;   //initialze (x1,y1,z1) and (x4,y4,z4)
+        GLfloat y1 = radius * angleSin*qCos(anglez) + y;
+        GLfloat z1 =radius * qSin(anglez)+z;
+        GLfloat x4=0.0;
+        GLfloat y4 = 0.0;
+        GLfloat z4=0.0;
+        GLfloat zn1=0.0;   //zn1 and zn4 are the reflection of coordinate of (x1,y1,z1) and (x4,y4,z4) based on x-y plane
+        GLfloat zn4=0.0;
+
+        for (int i=0; i < NumSectors; ++i) {
+
+            angle = (i * 2 * M_PI) / NumSectors;
+
+            x4 = radius * qCos(angle+2*M_PI/NumSectors)*qCos(anglez+2*M_PI/NumSectors) + x;
+            y4 = radius * qSin(angle+2*M_PI/NumSectors)*qCos(anglez+2*M_PI/NumSectors) + y;
+            z4 = radius * qSin(anglez+2*M_PI/NumSectors) + z;
+
+            face2(x,y,z,x1,y1,z1,x4,y4,z4,NumSectors,radius,angle,anglez);
+            zn1=-z1+2*z;
+            zn4=-z4+2*z;
+            face2(x,y,z,x1,y1,zn1,x4,y4,zn4,NumSectors,radius,angle,anglez);  //draw the reflection hemi-sphere based on x-y plane
+            x1=radius*qCos(angle+2*M_PI/NumSectors)*qCos(anglez)+x;
+            y1=radius*qSin(angle+2*M_PI/NumSectors)*qCos(anglez)+y;
+            z1=radius * qSin(anglez)+z;
+
+        }
+
+        x1 = x4;
+        y1 = y4;
+        z1 = z4;
+        zn1=zn4;
+    }
+
+}
+
+
 
 
 
