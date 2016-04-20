@@ -9,23 +9,23 @@ Draw3D::Draw3D()
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
-    stlWriter.open ("model.stl"); //name of stl file
+    stlWriter.open ("coneOpen.stl"); //name of stl file
     stlWriter << "solid model\n"; //first line of stl file
 
     //3D figures in stl file and 3D model space
 
-      rectangle(0.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height
-      //extrudedRectangle(0.0f, 0.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness
+      //rectangle(0.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
+     // extrudedRectangle(0.0f, 0.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
       //cylinder(8.0f, -8.0f,-2.0f,3.0f,3.0f,8); //cylinder x, y, z, radius, height, NumSectors - 8 creates octagon
      // cylinder(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
       //extrudedCylinder(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-      //pyramid(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
-     // pyramid(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
-      //cone(5.0f, -5.0f, 2.0f,3.0f,9.0f,100,false); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
-      //tetrahedron(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
+     //pyramid(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
+     //pyramid(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
+      cone(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, false); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
+    //  tetrahedron(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
      // tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
 
-      //sphere(1,1,-0.5,0.5,30);
+     // sphere(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -161,7 +161,8 @@ void Draw3D::quad(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GL
     stlWriter << "endfacet\n";
 }
 void Draw3D::quad(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3, GLfloat x4, GLfloat y4, GLfloat z4){
-    QVector3D n = QVector3D::normal(QVector3D(x4 - x1, y4 - y1, z4 - z1), QVector3D(x2 - x1, y2 - y1, z2 - z1));
+
+    QVector3D n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x1 - x2, y1 - y2, z1 - z2));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
     stlWriter << "outer loop \n";
@@ -183,7 +184,7 @@ void Draw3D::quad(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GL
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
 
-    /*
+
     n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x2 - x4, y2 - y4, z2 - z4));
 
     stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
@@ -205,7 +206,33 @@ void Draw3D::quad(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GL
 
     stlWriter << "endloop\n";
     stlWriter << "endfacet\n";
-    */
+
+}
+
+void Draw3D::face(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3, GLfloat x4, GLfloat y4, GLfloat z4){
+
+    QVector3D n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x2 - x4, y2 - y4, z2 - z4));
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x4, y4, z4), n);
+    add(QVector3D(x1, y1, z1), n);
+    add(QVector3D(x2, y2, z2), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
+    stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
+    stlWriter << "outer loop \n";
+
+    add(QVector3D(x2, y2, z2), n);
+    add(QVector3D(x3, y3, z3), n);
+    add(QVector3D(x4, y4, z4), n);
+
+    stlWriter << "endloop\n";
+    stlWriter << "endfacet\n";
+
 }
 
 //Draw extrudes to define a 3D rectangle with z defined as the center of the rectangles height and output the vertex information into a stl file in the correct format
@@ -288,39 +315,14 @@ void Draw3D::rectangle(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat 
     GLfloat y4 = y + width;
     GLfloat z2 = z + height;
 
-    quad(x1, y1, z, x2, y2, z, x3, y3, z, x4, y4, z);   //bottom
-    quad(x1, y1, z2, x4, y4, z2, x3, y3, z2, x2, y2, z2); // top
-    quad(x1, y1, z, x4, y4, z, x4, y4, z2, x1, y1, z); // width side
-    quad(x2, y2, z, x3, y3, z, x3, y3, z2, x2, y2, z2); // width side
-    quad(x1, y1, z, x2, y2, z, x2, y2, z2, x1, y1, z2); // length side
-    quad(x4, y4, z, x4, y4, z2, x3, y3, z2, x3, y3, z); // length side
 
-    // dont work on 3D printer sites
-   // quad(x1, y1, z, x4, y4, z, x3, y3, z, x2, y2, z);   //bottom
-  //  quad(x1, y1, z2, x2, y2, z2, x3, y3, z2, x4, y4, z2); // top
-  //  quad(x1, y1, z, x1, y1, z2, x4, y4, z2, x4, y4, z); // width side
-  //  quad(x2, y2, z, x3, y3, z, x3, y3, z2, x2, y2, z2); // width side
-  // quad(x1, y1, z, x2, y2, z, x2, y2, z2, x1, y1, z2); // length side
-   // quad(x4, y4, z, x4, y4, z2, x3, y3, z2, x3, y3, z); // length side
+    face(x1, y1, z, x4, y4, z, x3, y3, z, x2, y2, z);   //bottom
+    face(x1, y1, z2, x2, y2, z2, x3, y3, z2, x4, y4, z2); // top
+    face(x1, y1, z, x1, y1, z2, x4, y4, z2, x4, y4, z); // width side
+    face(x2, y2, z, x3, y3, z, x3, y3, z2, x2, y2, z2); // width side
+    face(x1, y1, z, x2, y2, z, x2, y2, z2, x1, y1, z2); // length side
+    face(x4, y4, z, x4, y4, z2, x3, y3, z2, x3, y3, z); // length side
 
-
-
-    // quad(x, y, x + length, y, x + length, y + width, x, y + width, z, height);
-    /* //previus works
-    quad(x, y, z, x, y + width, z, x + length, y + width, z, x+ length, y, z);
-    quad(x,y,height, x + length, y, height, x + length, y + width, height, x, y+width, height);
-    quad(x,y,z,x + length, y, z, x + length, y, height, x, y, height);
-    quad(x + length, y + width, z, x, y+ width, z, x, y +width, height, x + length, y + width, height);
-    quad(x, y + width, z, x, y, z, x, y, height, x, y + width, height);
-    quad(x + length, y, z, x + length, y + width, z, x + length, y + width, height, x + length, y, height);
-
-
-    quad(x, y, x + length, y, x + length, y + width, x, y + width, z, height);
-    extrude(x, y, x + length, y, z, height);
-    extrude(x + length, y, x + length, y + width, z, height);
-    extrude(x + length, y + width, x, y + width, z, height);
-    extrude(x, y + width, x, y, z, height);
-    */
 }
 
 // Draw a 3D cylinder defining x, y, z, radius, height, numSectos - which determines how smooth it looks
@@ -343,10 +345,10 @@ void Draw3D::cylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat h
         GLfloat x4 = radius * angleSin + x;
         GLfloat y4 = radius * angleCos + y;
 
-        quad(x4,y4,z, x3, y3, z, x2, y2, z, x1, y1, z); // bottom
-        quad(x1,y1, z+height, x2, y2, z+height, x3, y3, z+height, x4, y4, z+height); // top
+        face(x4,y4,z, x3, y3, z, x2, y2, z, x1, y1, z); // bottom
+        face(x1,y1, z+height, x2, y2, z+height, x3, y3, z+height, x4, y4, z+height); // top
 
-        quad(x1,y1,z, x1, y1, z+height, x4, y4, z+height, x4, y4, z); // cylinder sides
+        face(x1,y1,z, x1, y1, z+height, x4, y4, z+height, x4, y4, z); // cylinder sides
 
         //quad(x1, y1, x2, y2, x3, y3, x4, y4, z, height);
        // extrude(x2, y2, x3, y3, z, height);
@@ -376,12 +378,12 @@ void Draw3D::extrudedCylinder(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius,
         GLfloat y4 = outRadius * angleCos + y;
 
 
-        quad(x4,y4,z, x3, y3, z, x2, y2, z, x1, y1, z); // bottom
-        quad(x1,y1,z+height, x2, y2, z+height, x3, y3,z+height, x4, y4, z+height); // top
+        face(x4,y4,z, x3, y3, z, x2, y2, z, x1, y1, z); // bottom
+        face(x1,y1,z+height, x2, y2, z+height, x3, y3,z+height, x4, y4, z+height); // top
 
-        quad(x1,y1,z, x1, y1,z+height, x4, y4, z+height, x4, y4, z); // cylinder sides
+        face(x1,y1,z, x1, y1,z+height, x4, y4, z+height, x4, y4, z); // cylinder sides
 
-        quad(x3,y3,z, x3, y3,z+height, x2, y2, z+height, x2, y2, z); // inner sides
+        face(x3,y3,z, x3, y3,z+height, x2, y2, z+height, x2, y2, z); // inner sides
 
         //quad(x1, y1, x2, y2, x3, y3, x4, y4, z, height);
         //extrude(x2, y2, x3, y3, z, height);
@@ -570,10 +572,10 @@ void Draw3D::cone(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLfloat heigh
         GLfloat y4 = radius * angleCos + y;
 
         if(cap){
-            quad(x1,y1,z+height, x2, y2, z+height, x3, y3, z+height, x4, y4, z+height); // bottom
+            face(x1,y1,z+height, x2, y2, z+height, x3, y3, z+height, x4, y4, z+height); // bottom
         }
        // quad(x1,y1,height, x2, y2, z, x3, y3, z, x4, y4, height); // inner cone
-        quad(x4,y4,z+height, x3, y3, z, x2, y2, z, x1, y1, z+height); // outer cone
+        face(x4,y4,z+height, x3, y3, z, x2, y2, z, x1, y1, z+height); // outer cone
 
        // quad(x1,y1,z, x2, y2, z, x3, y3, height, x4, y4, height); // blades
        // quad(x1,y1,z, x2, y2, height, x3, y3, height, x4, y4, z); // cone
