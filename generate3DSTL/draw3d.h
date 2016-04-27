@@ -6,6 +6,7 @@
 #include <QVector3D>
 #include <iostream>
 #include <fstream>
+#include "rectangle.h"
 
 using namespace std;
 
@@ -46,6 +47,7 @@ private:
 
     void sphere2(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors);
     void face2(GLfloat x, GLfloat y, GLfloat z, GLfloat x1, GLfloat y1, GLfloat z2, GLfloat x4, GLfloat y4, GLfloat z4, int NumSectors, GLfloat radius, GLfloat angle, GLfloat anglez);
+    void print3D(RectangleOBJ& a);
 
     QVector<GLfloat> m_data;
     int m_count;
