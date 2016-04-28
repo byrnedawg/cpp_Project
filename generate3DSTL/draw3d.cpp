@@ -28,11 +28,19 @@ Draw3D::Draw3D()
 
     // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
     RectangleOBJ a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+<<<<<<< HEAD
     RectangleOBJ b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
    // RectangleOBJ c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
    // RectangleOBJ d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     print3D(a);
     print3D(b);
+=======
+   // RectangleOBJ b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+   // RectangleOBJ c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+   // RectangleOBJ d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    print3D(a);
+   // print3D(b);
+>>>>>>> 276c1dd1aa1a830eda2a8b21fa86b35b688168e8
    // print3D(c);
    // print3D(d);
 
@@ -49,6 +57,7 @@ void Draw3D::print3D(RectangleOBJ& a)
 {
    GLfloat *p = m_data.data() + m_count;
    int index = 0;
+<<<<<<< HEAD
    GLfloat x, y, z, nx, ny, nz;
    for(QVector<GLfloat>::iterator i = a.r_data.begin(); i != a.r_data.end(); i++){
        *p++ = *i;
@@ -96,6 +105,22 @@ void Draw3D::print3D(RectangleOBJ& a)
        }
         m_count++;
    }
+=======
+   GLfloat x, y, z, xn, yn, zn;
+   for(QVector<GLfloat>::iterator i = a.r_data.begin(); i != a.r_data.end(); i++){
+        *p++ = *i;
+       if(index < 3)
+       {
+           cout << m_count << "value is = " << *i << "\n";
+       }
+       index++;
+
+        m_count++;
+   }
+
+   cout << "m_count = " << m_count << "\n";
+   cout << "Vertex count = " << a.vertexCount();
+>>>>>>> 276c1dd1aa1a830eda2a8b21fa86b35b688168e8
 }
 //Add the vertexes for the normal n and the vertex v from the 3D shapes definition and output the vertex values to the stl file
 void Draw3D::add(const QVector3D &v, const QVector3D &n)
