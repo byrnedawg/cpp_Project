@@ -22,35 +22,14 @@ void RectangleOBJ::add(const QVector3D &v, const QVector3D &n){
 void RectangleOBJ::face(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3, GLfloat x4, GLfloat y4, GLfloat z4){
     QVector3D n = QVector3D::normal(QVector3D(x1 - x4, y1 - y4, z1 - z4), QVector3D(x2 - x4, y2 - y4, z2 - z4));
 
-<<<<<<< HEAD
-=======
-   // stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
-    //stlWriter << "outer loop \n";
-
->>>>>>> 276c1dd1aa1a830eda2a8b21fa86b35b688168e8
     add(QVector3D(x4, y4, z4), n);
     add(QVector3D(x1, y1, z1), n);
     add(QVector3D(x2, y2, z2), n);
 
-<<<<<<< HEAD
-=======
-   // stlWriter << "endloop\n";
-  //  stlWriter << "endfacet\n";
-
-  //  stlWriter << "facet normal " << n.x() << " " << n.y() << " " << n.z() << "\n";
-  //  stlWriter << "outer loop \n";
-
->>>>>>> 276c1dd1aa1a830eda2a8b21fa86b35b688168e8
     add(QVector3D(x2, y2, z2), n);
     add(QVector3D(x3, y3, z3), n);
     add(QVector3D(x4, y4, z4), n);
 
-<<<<<<< HEAD
-=======
-  //  stlWriter << "endloop\n";
- //   stlWriter << "endfacet\n";
-
->>>>>>> 276c1dd1aa1a830eda2a8b21fa86b35b688168e8
 }
 
 void RectangleOBJ::draw(){
