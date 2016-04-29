@@ -9,7 +9,6 @@ class Shapes3D
 {
 private:
     GLfloat x, y, z;
-    int shape_count;
 public:
     Shapes3D(GLfloat x, GLfloat y, GLfloat z);
     ~Shapes3D();
@@ -20,11 +19,12 @@ public:
                  GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3,
                  GLfloat z3, GLfloat x4, GLfloat y4, GLfloat z4);
 
-    virtual void draw() = 0;
-    virtual void volume() = 0;
+    //virtual void draw() = 0;
+    //virtual void volume() = 0;
 
 
     QVector<GLfloat> shape_data;
+    int shape_count;
 };
 
 #endif // SHAPES3D_H

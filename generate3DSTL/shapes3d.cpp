@@ -2,7 +2,7 @@
 
 Shapes3D::Shapes3D(GLfloat x, GLfloat y, GLfloat z) : x(x), y(y), z(z), shape_count(0)
 {
-
+    shape_data.resize(6*6*6);
 }
 
 Shapes3D::~Shapes3D(){

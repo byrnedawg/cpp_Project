@@ -3,12 +3,11 @@
 RectangleOBJ::RectangleOBJ(GLfloat x, GLfloat y, GLfloat z,
                            GLfloat length, GLfloat width, GLfloat height)
                             : Shapes3D(x, y, z), length(length), width(width), height(height){
-   // r_data.resize(6*6*6);
-    //shape_data.resize(6*6*6);
+  
     this->draw();
 }
 RectangleOBJ::~RectangleOBJ(){
-   // r_count = 0;
+   
 }
 
 /*

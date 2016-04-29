@@ -29,12 +29,12 @@ Draw3D::Draw3D()
     // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
     RectangleOBJ a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     RectangleOBJ b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
-   // RectangleOBJ c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
-   // RectangleOBJ d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    RectangleOBJ c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    RectangleOBJ d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     print3D(a);
     print3D(b);
-   // print3D(c);
-   // print3D(d);
+    print3D(c);
+    print3D(d);
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -45,12 +45,14 @@ Draw3D::Draw3D()
 
 
 }
-void Draw3D::print3D(RectangleOBJ& a)
+//void Draw3D::print3D(RectangleOBJ& a)
+void Draw3D::print3D(Shapes3D& a)
 {
    GLfloat *p = m_data.data() + m_count;
    int index = 0;
    GLfloat x, y, z, nx, ny, nz;
-   for(QVector<GLfloat>::iterator i = a.r_data.begin(); i != a.r_data.end(); i++){
+   //for(QVector<GLfloat>::iterator i = a.r_data.begin(); i != a.r_data.end(); i++){
+   for(QVector<GLfloat>::iterator i = a.shape_data.begin(); i != a.shape_data.end(); i++){
        *p++ = *i;
        if(index == 0){
            x = *i;

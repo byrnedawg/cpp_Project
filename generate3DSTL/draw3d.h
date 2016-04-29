@@ -47,8 +47,8 @@ private:
 
     void sphere2(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors);
     void face2(GLfloat x, GLfloat y, GLfloat z, GLfloat x1, GLfloat y1, GLfloat z2, GLfloat x4, GLfloat y4, GLfloat z4, int NumSectors, GLfloat radius, GLfloat angle, GLfloat anglez);
-    void print3D(RectangleOBJ& a);
-
+   // void print3D(RectangleOBJ& a);
+    void print3D(Shapes3D& a);
     QVector<GLfloat> m_data;
     int m_count;
 };
