@@ -2,7 +2,7 @@
 
 Shapes3D::Shapes3D(GLfloat x, GLfloat y, GLfloat z) : x(x), y(y), z(z), shape_count(0)
 {
-    shape_data.resize(6*6*6);
+    shape_data.resize(6*6*6*100);
 }
 
 Shapes3D::~Shapes3D(){
@@ -19,6 +19,15 @@ void Shapes3D::add(const QVector3D &v, const QVector3D &n){
     *p++ = n.z();
     shape_count += 6;
 }
+void Shapes3D::tri(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3){
+    QVector3D n = QVector3D::normal(QVector3D(x3 - x1, y3 - y1, z3 - z1), QVector3D(x2 - x1, y2 - y1, z2 - z1));
+
+    add(QVector3D(x1, y1, z1), n);
+    add(QVector3D(x3, y3, z3), n);
+    add(QVector3D(x2, y2, z2), n);
+
+}
+
 
 void Shapes3D::face(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2,
                      GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3,
