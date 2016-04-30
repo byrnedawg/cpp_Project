@@ -7,7 +7,7 @@ Draw3D::Draw3D()
 {
     //m_data.resize(2500 * 6); //allocate space for data
     //m_data.resize(100000 * 6); //allocate space for data
-    m_data.resize(vectorSize);
+    m_data.resize(vectorSize); //Dynamically allocate space for data
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
@@ -28,7 +28,7 @@ Draw3D::Draw3D()
       //tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
 
     // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
-    Rectangle3D a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    Rectangle3D a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
     Rectangle3D b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     Rectangle3D c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     Rectangle3D d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
@@ -46,11 +46,9 @@ Draw3D::Draw3D()
 
     Cone3D l(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, true); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
 
+    Triangle3D q(-10.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //triangle x, y, z, length, width, height - works
 
     print3D(a);
-   // print3D(b);
-   // print3D(c);
-   // print3D(d);
     print3D(e);
     print3D(f);
     print3D(g);
@@ -59,6 +57,7 @@ Draw3D::Draw3D()
     print3D(j);
     print3D(k);
     print3D(l);
+    print3D(q);
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file

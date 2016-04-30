@@ -11,6 +11,7 @@
 #include "cylinder3d.h"
 #include "pyramid3d.h"
 #include "cone3d.h"
+#include "triangle3d.h"
 
 using namespace std;
 

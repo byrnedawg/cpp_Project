@@ -13159,4 +13159,60 @@ vertex 5 -5 2
 vertex 4.81163 -2.00592 11
 endloop
 endfacet
+facet normal 0 -1 0
+outer loop 
+vertex -10 0 0
+vertex -3 0 0
+vertex -10 0 2.5
+endloop
+endfacet
+facet normal 0 1 0
+outer loop 
+vertex -10 5 0
+vertex -10 5 2.5
+vertex -3 5 0
+endloop
+endfacet
+facet normal 0 0 -1
+outer loop 
+vertex -3 0 0
+vertex -10 0 0
+vertex -10 5 0
+endloop
+endfacet
+facet normal 0 0 -1
+outer loop 
+vertex -10 5 0
+vertex -3 5 0
+vertex -3 0 0
+endloop
+endfacet
+facet normal 0.336336 0 0.941742
+outer loop 
+vertex -10 5 2.5
+vertex -10 0 2.5
+vertex -3 0 0
+endloop
+endfacet
+facet normal 0.336336 0 0.941742
+outer loop 
+vertex -3 0 0
+vertex -3 5 0
+vertex -10 5 2.5
+endloop
+endfacet
+facet normal -1 0 -0
+outer loop 
+vertex -10 5 2.5
+vertex -10 5 0
+vertex -10 0 0
+endloop
+endfacet
+facet normal -1 0 -0
+outer loop 
+vertex -10 0 0
+vertex -10 0 2.5
+vertex -10 5 2.5
+endloop
+endfacet
 endsolid model

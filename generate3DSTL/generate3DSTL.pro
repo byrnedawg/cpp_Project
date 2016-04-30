@@ -7,7 +7,8 @@ HEADERS       = glwidget.h \
     tetrahedron3d.h \
     cylinder3d.h \
     pyramid3d.h \
-    cone3d.h
+    cone3d.h \
+    triangle3d.h
 SOURCES       = glwidget.cpp \
                 main.cpp \
                 window.cpp \
@@ -18,7 +19,8 @@ SOURCES       = glwidget.cpp \
     tetrahedron3d.cpp \
     cylinder3d.cpp \
     pyramid3d.cpp \
-    cone3d.cpp
+    cone3d.cpp \
+    triangle3d.cpp
 
 QT           += widgets
 
