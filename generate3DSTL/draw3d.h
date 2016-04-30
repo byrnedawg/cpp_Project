@@ -55,6 +55,7 @@ private:
     void print3D(Shapes3D& a);
     QVector<GLfloat> m_data;
     int m_count;
+    int vectorSize;
 };
 
 #endif // DRAW3D_H

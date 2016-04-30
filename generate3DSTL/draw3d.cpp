@@ -3,10 +3,11 @@
 
 
 Draw3D::Draw3D()
-    : m_count(0)
+    : m_count(0), vectorSize(1)
 {
     //m_data.resize(2500 * 6); //allocate space for data
-    m_data.resize(100000 * 6); //allocate space for data
+    //m_data.resize(100000 * 6); //allocate space for data
+    m_data.resize(vectorSize);
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
@@ -39,7 +40,6 @@ Draw3D::Draw3D()
     Cylinder3D h(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
 
     Cylinder3D i(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-  //  extrudedRectangle3D(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
 
     Pyramid3D j(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
     Pyramid3D k(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
@@ -72,6 +72,8 @@ Draw3D::Draw3D()
 //void Draw3D::print3D(RectangleOBJ& a)
 void Draw3D::print3D(Shapes3D& a)
 {
+   vectorSize += a.shape_data.size();
+   m_data.resize(vectorSize);
    GLfloat *p = m_data.data() + m_count;
    int index = 0;
    GLfloat x, y, z, nx, ny, nz;
