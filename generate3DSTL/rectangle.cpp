@@ -3,6 +3,7 @@
 Rectangle3D::Rectangle3D(GLfloat x, GLfloat y, GLfloat z,
                            GLfloat length, GLfloat width, GLfloat height)
                            : Shapes3D(x, y, z), length(length), width(width), height(height){
+    shape_data.resize(216); // 6 values * 6 vertex * 6 faces
     this->draw();
 }
 Rectangle3D::~Rectangle3D(){

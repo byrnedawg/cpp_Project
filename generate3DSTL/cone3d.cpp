@@ -5,7 +5,7 @@ Cone3D::Cone3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius,
                       : Shapes3D(x, y, z), radius(radius), height(height),
                         NumSectors(NumSectors), cap(cap){
 
-
+    shape_data.resize( 72 * NumSectors); // 6 values * 12 vertex *NumSectors
     this->draw();
 }
 

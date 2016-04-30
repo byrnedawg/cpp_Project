@@ -5,7 +5,7 @@ Cylinder3D::Cylinder3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius,
                        GLfloat height, int NumSectors) : Shapes3D(x,y,z),
                         radius(radius), height(height), NumSectors(NumSectors){
 
-
+    shape_data.resize(108 * NumSectors); // 6 values * 18 vertex *NumSectors
     this->draw();
 }
 
@@ -13,7 +13,7 @@ Cylinder3D::Cylinder3D(GLfloat x, GLfloat y, GLfloat z, GLfloat inRadius,
                        GLfloat outRadius, GLfloat height, int NumSectors) : Shapes3D(x,y,z),
                         inRadius(inRadius), outRadius(outRadius), height(height), NumSectors(NumSectors){
 
-
+    shape_data.resize(144 * NumSectors); // 6 values * 24 vertex *NumSectors
     this->extrude();
 }
 

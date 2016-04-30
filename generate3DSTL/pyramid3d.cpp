@@ -3,7 +3,7 @@
 Pyramid3D::Pyramid3D( GLfloat x, GLfloat y, GLfloat z, GLfloat length,
                       GLfloat width, GLfloat height) : Shapes3D(x, y, z),
                       length(length), width(width), height(height){
-
+    shape_data.resize(108); // 6 * 3 * 4 + 6 * 6
     this->draw();
 }
 

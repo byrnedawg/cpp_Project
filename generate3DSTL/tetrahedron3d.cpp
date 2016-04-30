@@ -4,7 +4,7 @@ Tetrahedron3D::Tetrahedron3D( GLfloat x, GLfloat y, GLfloat z, GLfloat x2,
                GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3,
                GLfloat height) : Shapes3D(x, y, z), x2(x2), y2(y2), z2(z2),
                 x3(x3), y3(y3), z3(z3), height(height){
-
+    shape_data.resize(72); // 6 values * 3 vertex * 4 faces
     this->draw();
 }
 

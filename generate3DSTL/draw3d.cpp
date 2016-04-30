@@ -28,9 +28,9 @@ Draw3D::Draw3D()
 
     // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
     Rectangle3D a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
-   // Rectangle3D b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
-   // Rectangle3D c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
-   // Rectangle3D d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    Rectangle3D b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    Rectangle3D c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
+    Rectangle3D d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
 
     Tetrahedron3D e(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
     Tetrahedron3D f(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
@@ -39,7 +39,7 @@ Draw3D::Draw3D()
     Cylinder3D h(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
 
     Cylinder3D i(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-    extrudedRectangle3D(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
+  //  extrudedRectangle3D(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
 
     Pyramid3D j(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
     Pyramid3D k(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
