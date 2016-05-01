@@ -46,7 +46,10 @@ Draw3D::Draw3D()
 
     Cone3D l(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, true); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
 
-    Triangle3D q(-10.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //triangle x, y, z, length, width, height - works
+    Triangle3D q(-11.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //triangle x, y, z, length, width, height - works
+
+    Rectangle3D r(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f);
+
 
     print3D(a);
     print3D(e);
@@ -58,6 +61,7 @@ Draw3D::Draw3D()
     print3D(k);
     print3D(l);
     print3D(q);
+    print3D(r);
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
