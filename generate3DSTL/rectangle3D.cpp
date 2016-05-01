@@ -1,4 +1,4 @@
-#include "rectangle.h"
+#include "rectangle3D.h"
 
 Rectangle3D::Rectangle3D(GLfloat x, GLfloat y, GLfloat z,
                            GLfloat length, GLfloat width, GLfloat height)

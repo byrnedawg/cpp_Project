@@ -53,13 +53,14 @@ SOURCES       = ../generate3DSTL/glwidget.cpp \
 		../generate3DSTL/window.cpp \
 		../generate3DSTL/mainwindow.cpp \
 		../generate3DSTL/draw3d.cpp \
-		../generate3DSTL/rectangle.cpp \
 		../generate3DSTL/shapes3d.cpp \
 		../generate3DSTL/tetrahedron3d.cpp \
 		../generate3DSTL/cylinder3d.cpp \
 		../generate3DSTL/pyramid3d.cpp \
 		../generate3DSTL/cone3d.cpp \
-		../generate3DSTL/triangle3d.cpp moc_glwidget.cpp \
+		../generate3DSTL/triangle3d.cpp \
+		../generate3DSTL/rectangle3D.cpp \
+		../generate3DSTL/sphere3d.cpp moc_glwidget.cpp \
 		moc_window.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = glwidget.o \
@@ -67,13 +68,14 @@ OBJECTS       = glwidget.o \
 		window.o \
 		mainwindow.o \
 		draw3d.o \
-		rectangle.o \
 		shapes3d.o \
 		tetrahedron3d.o \
 		cylinder3d.o \
 		pyramid3d.o \
 		cone3d.o \
 		triangle3d.o \
+		rectangle3D.o \
+		sphere3d.o \
 		moc_glwidget.o \
 		moc_window.o \
 		moc_mainwindow.o
@@ -224,24 +226,26 @@ DIST          = ../../../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../generate3DSTL/window.h \
 		../generate3DSTL/mainwindow.h \
 		../generate3DSTL/draw3d.h \
-		../generate3DSTL/rectangle.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
 		../generate3DSTL/pyramid3d.h \
 		../generate3DSTL/cone3d.h \
-		../generate3DSTL/triangle3d.h ../generate3DSTL/glwidget.cpp \
+		../generate3DSTL/triangle3d.h \
+		../generate3DSTL/rectangle3D.h \
+		../generate3DSTL/sphere3d.h ../generate3DSTL/glwidget.cpp \
 		../generate3DSTL/main.cpp \
 		../generate3DSTL/window.cpp \
 		../generate3DSTL/mainwindow.cpp \
 		../generate3DSTL/draw3d.cpp \
-		../generate3DSTL/rectangle.cpp \
 		../generate3DSTL/shapes3d.cpp \
 		../generate3DSTL/tetrahedron3d.cpp \
 		../generate3DSTL/cylinder3d.cpp \
 		../generate3DSTL/pyramid3d.cpp \
 		../generate3DSTL/cone3d.cpp \
-		../generate3DSTL/triangle3d.cpp
+		../generate3DSTL/triangle3d.cpp \
+		../generate3DSTL/rectangle3D.cpp \
+		../generate3DSTL/sphere3d.cpp
 QMAKE_TARGET  = generate3DSTL
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = generate3DSTL.app/Contents/MacOS/generate3DSTL
@@ -607,8 +611,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../generate3DSTL/glwidget.h ../generate3DSTL/window.h ../generate3DSTL/mainwindow.h ../generate3DSTL/draw3d.h ../generate3DSTL/rectangle.h ../generate3DSTL/shapes3d.h ../generate3DSTL/tetrahedron3d.h ../generate3DSTL/cylinder3d.h ../generate3DSTL/pyramid3d.h ../generate3DSTL/cone3d.h ../generate3DSTL/triangle3d.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../generate3DSTL/glwidget.cpp ../generate3DSTL/main.cpp ../generate3DSTL/window.cpp ../generate3DSTL/mainwindow.cpp ../generate3DSTL/draw3d.cpp ../generate3DSTL/rectangle.cpp ../generate3DSTL/shapes3d.cpp ../generate3DSTL/tetrahedron3d.cpp ../generate3DSTL/cylinder3d.cpp ../generate3DSTL/pyramid3d.cpp ../generate3DSTL/cone3d.cpp ../generate3DSTL/triangle3d.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../generate3DSTL/glwidget.h ../generate3DSTL/window.h ../generate3DSTL/mainwindow.h ../generate3DSTL/draw3d.h ../generate3DSTL/shapes3d.h ../generate3DSTL/tetrahedron3d.h ../generate3DSTL/cylinder3d.h ../generate3DSTL/pyramid3d.h ../generate3DSTL/cone3d.h ../generate3DSTL/triangle3d.h ../generate3DSTL/rectangle3D.h ../generate3DSTL/sphere3d.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../generate3DSTL/glwidget.cpp ../generate3DSTL/main.cpp ../generate3DSTL/window.cpp ../generate3DSTL/mainwindow.cpp ../generate3DSTL/draw3d.cpp ../generate3DSTL/shapes3d.cpp ../generate3DSTL/tetrahedron3d.cpp ../generate3DSTL/cylinder3d.cpp ../generate3DSTL/pyramid3d.cpp ../generate3DSTL/cone3d.cpp ../generate3DSTL/triangle3d.cpp ../generate3DSTL/rectangle3D.cpp ../generate3DSTL/sphere3d.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -653,7 +657,7 @@ moc_glwidget.cpp: ../../../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QO
 		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../generate3DSTL/rectangle.h \
+		../generate3DSTL/rectangle3D.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
@@ -707,7 +711,7 @@ glwidget.o: ../generate3DSTL/glwidget.cpp ../generate3DSTL/glwidget.h \
 		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../generate3DSTL/rectangle.h \
+		../generate3DSTL/rectangle3D.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
@@ -751,7 +755,7 @@ window.o: ../generate3DSTL/window.cpp ../generate3DSTL/glwidget.h \
 		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../generate3DSTL/rectangle.h \
+		../generate3DSTL/rectangle3D.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
@@ -802,7 +806,7 @@ draw3d.o: ../generate3DSTL/draw3d.cpp ../generate3DSTL/draw3d.h \
 		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../generate3DSTL/rectangle.h \
+		../generate3DSTL/rectangle3D.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
@@ -811,15 +815,6 @@ draw3d.o: ../generate3DSTL/draw3d.cpp ../generate3DSTL/draw3d.h \
 		../generate3DSTL/cone3d.h \
 		../generate3DSTL/triangle3d.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o draw3d.o ../generate3DSTL/draw3d.cpp
-
-rectangle.o: ../generate3DSTL/rectangle.cpp ../generate3DSTL/rectangle.h \
-		../generate3DSTL/shapes3d.h \
-		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qopengl.h \
-		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
-		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
-		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rectangle.o ../generate3DSTL/rectangle.cpp
 
 shapes3d.o: ../generate3DSTL/shapes3d.cpp ../generate3DSTL/shapes3d.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qopengl.h \
@@ -875,6 +870,25 @@ triangle3d.o: ../generate3DSTL/triangle3d.cpp ../generate3DSTL/triangle3d.h \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
 		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o triangle3d.o ../generate3DSTL/triangle3d.cpp
+
+rectangle3D.o: ../generate3DSTL/rectangle3D.cpp ../generate3DSTL/rectangle3D.h \
+		../generate3DSTL/shapes3d.h \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rectangle3D.o ../generate3DSTL/rectangle3D.cpp
+
+sphere3d.o: ../generate3DSTL/sphere3d.cpp ../generate3DSTL/sphere3d.h \
+		../generate3DSTL/shapes3d.h \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QVector3D \
+		../../../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
+		../../../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qmath.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sphere3d.o ../generate3DSTL/sphere3d.cpp
 
 moc_glwidget.o: moc_glwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_glwidget.o moc_glwidget.cpp
