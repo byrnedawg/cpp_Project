@@ -11,7 +11,7 @@ Draw3D::Draw3D()
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
-    stlWriter.open ("modelRect.stl"); //name of stl file
+    stlWriter.open ("model.stl"); //name of stl file
     stlWriter << "solid model\n"; //first line of stl file
 
     //3D figures in stl file and 3D model space
@@ -28,7 +28,8 @@ Draw3D::Draw3D()
       //tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
 
     // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
-    Rectangle3D a(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
+
+    Rectangle3D a(-7.0f, 7.0f, 10.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
     Rectangle3D b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     Rectangle3D c(7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
     Rectangle3D d(-7.0f, -7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
@@ -50,11 +51,9 @@ Draw3D::Draw3D()
 
     Rectangle3D r(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f);
 
-    Sphere3D s(15.0f,15.0f,15.0f,5.0f,20); // x, y, z, radius, NumSectors
+   // Sphere3D s(15.0f,15.0f,15.0f,5.0f,20); // x, y, z, radius, NumSectors
 
     Iconosphere3D t(-15.0f, -15.0f, 0.0f,5.0f, 1); // x, y, z, radius, NumSectors
-
-  //  Rectangle3D aa(-3.0f, 2.0f, -1.0f, 5.0f, 5.0f, 5.0f); //rectangle x, y, z, length, width, height - works
 
     print3D(a);
     print3D(e);
@@ -67,8 +66,23 @@ Draw3D::Draw3D()
     print3D(l);
     print3D(q);
     print3D(r);
-    //print3D(s);
+   // print3D(s);
     print3D(t);
+
+
+
+
+   // Tcube u (10,0,0,20,10,10,M_PI,100);//(start.x,start.y,start.z,length,width,height,rotation angle,accuarcy)
+   // print3D (u);
+   Cylinder3D w (15,-15,0,5,10,M_PI/4,M_PI/4,30); //(center.x,center.y,center.z,radius,height,incline in x-drection,incline in y-direction,accurarcy)
+    print3D(w);
+    Cylinder3D x(30,30,10,10,0,5,10,M_PI*2,100); //(axis.x,axis.y,center.x,center.y,center.z,radius,height, rotation angle, accuarcy)
+    print3D(x);
+
+
+   // Rectangle3D y (0,0,0,20,10,10,20,10);
+   // print3D(y);
+
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file

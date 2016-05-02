@@ -10,7 +10,9 @@ HEADERS       = glwidget.h \
     triangle3d.h \
     rectangle3D.h \
     sphere3d.h \
-    iconosphere3d.h
+    iconosphere3d.h \
+    cube2.h \
+    tcube.h
 SOURCES       = glwidget.cpp \
                 main.cpp \
                 window.cpp \
@@ -24,7 +26,9 @@ SOURCES       = glwidget.cpp \
     triangle3d.cpp \
     rectangle3D.cpp \
     sphere3d.cpp \
-    iconosphere3d.cpp
+    iconosphere3d.cpp \
+    cube2.cpp \
+    tcube.cpp
 
 QT           += widgets
 
