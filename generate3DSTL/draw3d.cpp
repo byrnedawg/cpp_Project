@@ -52,6 +52,9 @@ Draw3D::Draw3D()
 
     Sphere3D s(15.0f,15.0f,15.0f,5.0f,20); // x, y, z, radius, NumSectors
 
+    Iconosphere3D t(-15.0f, -15.0f, 0.0f,5.0f, 1); // x, y, z, radius, NumSectors
+
+  //  Rectangle3D aa(-3.0f, 2.0f, -1.0f, 5.0f, 5.0f, 5.0f); //rectangle x, y, z, length, width, height - works
 
     print3D(a);
     print3D(e);
@@ -64,7 +67,8 @@ Draw3D::Draw3D()
     print3D(l);
     print3D(q);
     print3D(r);
-    print3D(s);
+    //print3D(s);
+    print3D(t);
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file

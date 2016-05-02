@@ -9,7 +9,8 @@ HEADERS       = glwidget.h \
     cone3d.h \
     triangle3d.h \
     rectangle3D.h \
-    sphere3d.h
+    sphere3d.h \
+    iconosphere3d.h
 SOURCES       = glwidget.cpp \
                 main.cpp \
                 window.cpp \
@@ -22,7 +23,8 @@ SOURCES       = glwidget.cpp \
     cone3d.cpp \
     triangle3d.cpp \
     rectangle3D.cpp \
-    sphere3d.cpp
+    sphere3d.cpp \
+    iconosphere3d.cpp
 
 QT           += widgets
 

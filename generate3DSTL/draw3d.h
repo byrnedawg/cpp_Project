@@ -13,6 +13,7 @@
 #include "cone3d.h"
 #include "triangle3d.h"
 #include "sphere3d.h"
+#include "iconosphere3d.h"
 
 using namespace std;
 
