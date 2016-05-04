@@ -9,19 +9,26 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QMessageBox>
+#include <QMainWindow>
 
-Window::Window(MainWindow *mw)
-    : mainWindow(mw)
-{
+Window::Window(MainWindow *mw): mainWindow(mw){
+
     glWidget = new GLWidget;
 
+    //create sliders for x, y, z rotation and how close the view is to the origin 0,0,0
     xSlider = createSlider();
     ySlider = createSlider();
     zSlider = createSlider();
-
+    //view slider has a different creation function
     viewSlider = createSlider2();
 
+    xLabel = new QLabel(tr("X"));
+    yLabel = new QLabel(tr("Y"));
+    zLabel = new QLabel(tr("Z"));
+    viewLabel = new QLabel(tr("Zoom"));
+    modelLabel = new QLabel(tr("3D Model View"));
 
+    //sync sliders with the function they govern in GLWidget
     connect(xSlider, &QSlider::valueChanged, glWidget, &GLWidget::setXRotation);
     connect(glWidget, &GLWidget::xRotationChanged, xSlider, &QSlider::setValue);
     connect(ySlider, &QSlider::valueChanged, glWidget, &GLWidget::setYRotation);
@@ -32,32 +39,40 @@ Window::Window(MainWindow *mw)
     connect(viewSlider, &QSlider::valueChanged, glWidget, &GLWidget::setView);
     connect(glWidget, &GLWidget::viewDistanceChanged, viewSlider, &QSlider::setValue);
 
-
+    //lines up widgets vertially or horizontally deppending on which layout is used
+    // container lines up left to right on the window
     QVBoxLayout *mainLayout = new QVBoxLayout;
     QHBoxLayout *container = new QHBoxLayout;
     container->addWidget(glWidget);
+    container->addWidget(xLabel);
     container->addWidget(xSlider);
+    container->addWidget(yLabel);
     container->addWidget(ySlider);
+    container->addWidget(zLabel);
     container->addWidget(zSlider);
+    container->addWidget(viewLabel);
     container->addWidget(viewSlider);
 
+    mainLayout->addWidget(modelLabel);
+
+    //interface objects and widgets
     QWidget *w = new QWidget;
     w->setLayout(container);
     mainLayout->addWidget(w);
-    dockBtn = new QPushButton(tr("Undock"), this);
-    connect(dockBtn, &QPushButton::clicked, this, &Window::dockUndock);
-    mainLayout->addWidget(dockBtn);
 
     setLayout(mainLayout);
 
+    //intialize values for the sliders
     xSlider->setValue(15 * 16);
     ySlider->setValue(345 * 16);
     zSlider->setValue(0 * 16);
     viewSlider->setValue(-300);
 
+    //name of the app window
     setWindowTitle(tr("Generate 3D Model + stl. Files"));
 }
 
+//create the rotation sliders about the x, y, and z axis
 QSlider *Window::createSlider()
 {
     QSlider *slider = new QSlider(Qt::Vertical);
@@ -69,6 +84,7 @@ QSlider *Window::createSlider()
     return slider;
 }
 
+//create the zoom in zoom out slider
 QSlider *Window::createSlider2()
 {
     QSlider *slider = new QSlider(Qt::Vertical);
@@ -82,6 +98,7 @@ QSlider *Window::createSlider2()
     return slider;
 }
 
+//close the application with the escape key
 void Window::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == Qt::Key_Escape)
@@ -90,26 +107,3 @@ void Window::keyPressEvent(QKeyEvent *e)
         QWidget::keyPressEvent(e);
 }
 
-void Window::dockUndock()
-{
-    if (parent()) {
-        setParent(0);
-        setAttribute(Qt::WA_DeleteOnClose);
-        move(QApplication::desktop()->width() / 2 - width() / 2,
-             QApplication::desktop()->height() / 2 - height() / 2);
-        dockBtn->setText(tr("Dock"));
-        show();
-    } else {
-        if (!mainWindow->centralWidget()) {
-            if (mainWindow->isVisible()) {
-                setAttribute(Qt::WA_DeleteOnClose, false);
-                dockBtn->setText(tr("Undock"));
-                mainWindow->setCentralWidget(this);
-            } else {
-                QMessageBox::information(0, tr("Cannot dock"), tr("Main window already closed"));
-            }
-        } else {
-            QMessageBox::information(0, tr("Cannot dock"), tr("Main window already occupied"));
-        }
-    }
-}

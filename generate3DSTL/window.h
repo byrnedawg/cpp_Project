@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include <QWidget>
+#include <QLabel>
 
 class QSlider;
 class QPushButton;
@@ -20,7 +21,7 @@ protected:
     void keyPressEvent(QKeyEvent *event) Q_DECL_OVERRIDE;
 
 private slots:
-    void dockUndock();
+
 
 private:
     QSlider *createSlider();
@@ -31,7 +32,13 @@ private:
     QSlider *ySlider;
     QSlider *zSlider;
     QSlider *viewSlider;
-    QPushButton *dockBtn;
+
+    QLabel *modelLabel;
+    QLabel *xLabel;
+    QLabel *yLabel;
+    QLabel *zLabel;
+    QLabel *viewLabel;
+
     MainWindow *mainWindow;
 };
 

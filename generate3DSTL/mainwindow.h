@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+//provides main application window
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -10,8 +11,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
-private slots:
-    void onAddNew();
 };
 
 #endif

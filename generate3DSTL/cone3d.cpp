@@ -34,8 +34,7 @@ void Cone3D::draw(){
         if(cap){
             face(x1,y1,z+height, x2, y2, z+height, x3, y3, z+height, x4, y4, z+height); // bottom
         }
-       // quad(x1,y1,height, x2, y2, z, x3, y3, z, x4, y4, height); // inner cone
-        face(x4,y4,z+height, x3, y3, z, x2, y2, z, x1, y1, z+height); // outer cone
+            face(x4,y4,z+height, x3, y3, z, x2, y2, z, x1, y1, z+height); // outer cone
 
     }
 }

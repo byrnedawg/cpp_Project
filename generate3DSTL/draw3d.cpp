@@ -5,8 +5,6 @@
 Draw3D::Draw3D()
     : m_count(0), vectorSize(1)
 {
-    //m_data.resize(2500 * 6); //allocate space for data
-    //m_data.resize(100000 * 6); //allocate space for data
     m_data.resize(vectorSize); //Dynamically allocate space for data
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
@@ -15,19 +13,6 @@ Draw3D::Draw3D()
     stlWriter << "solid model\n"; //first line of stl file
 
     //3D figures in stl file and 3D model space
-
-     // rectangle(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
-     // extrudedRectangle(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //extrudedRectangle x, y, z, length, width, height, thickness - works
-     // cylinder(8.0f, -8.0f,-2.0f,3.0f,3.0f,8); //cylinder x, y, z, radius, height, NumSectors - 8 creates octagon
-    //  cylinder(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
-    // extrudedCylinder(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-    // pyramid(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
-    // pyramid(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
-     // cone(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, true); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
-     // tetrahedron(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
-      //tetrahedron(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
-
-    // sphere2(1,1,-0.5,5,30); // x, y, z, radius, NumSectors
 
     Rectangle3D a(-7.0f, 7.0f, 10.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
     Rectangle3D b(7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f);
@@ -69,20 +54,12 @@ Draw3D::Draw3D()
    // print3D(s);
     print3D(t);
 
-
-
-
    // Tcube u (10,0,0,20,10,10,M_PI,100);//(start.x,start.y,start.z,length,width,height,rotation angle,accuarcy)
    // print3D (u);
    Cylinder3D w (15,-15,0,5,10,M_PI/4,M_PI/4,30); //(center.x,center.y,center.z,radius,height,incline in x-drection,incline in y-direction,accurarcy)
     print3D(w);
     Cylinder3D x(30,30,10,10,0,5,10,M_PI*2,100); //(axis.x,axis.y,center.x,center.y,center.z,radius,height, rotation angle, accuarcy)
     print3D(x);
-
-
-   // Rectangle3D y (0,0,0,20,10,10,20,10);
-   // print3D(y);
-
 
     //Done with 3D model
     stlWriter << "endsolid model\n"; //last line of stl file
@@ -93,7 +70,6 @@ Draw3D::Draw3D()
 
 
 }
-//void Draw3D::print3D(RectangleOBJ& a)
 void Draw3D::print3D(Shapes3D& a)
 {
    vectorSize += a.shape_data.size();

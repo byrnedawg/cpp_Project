@@ -20,10 +20,6 @@ public:
     void draw();
     void extrude();
     void offset();
-   // const GLfloat *constData() const { return r_data.constData(); }
-   // int count() const { return r_count; }
-   // int vertexCount() const { return r_count / 6; }
-    //QVector<GLfloat> r_data;
 
 };
 

@@ -44,24 +44,24 @@ protected:
 private:
     void setupVertexAttribs();
 
-    bool m_core;
-    int m_xRot;
-    int m_yRot;
-    int m_zRot;
-    int m_viewDis;
-    QPoint m_lastPos;
-    Draw3D m_model3D;
-    QOpenGLVertexArrayObject m_vao;
-    QOpenGLBuffer m_model3DVbo;
-    QOpenGLShaderProgram *m_program;
-    int m_projMatrixLoc;
-    int m_mvMatrixLoc;
-    int m_normalMatrixLoc;
-    int m_lightPosLoc;
-    QMatrix4x4 m_proj;
-    QMatrix4x4 m_camera;
-    QMatrix4x4 m_world;
-    bool m_transparent;
+    bool my_core;
+    int my_xRot;
+    int my_yRot;
+    int my_zRot;
+    int my_viewDis;
+    QPoint my_lastPos;
+    Draw3D my_model3D;
+    QOpenGLVertexArrayObject my_vao;
+    QOpenGLBuffer my_model3DVbo;
+    QOpenGLShaderProgram *my_program;
+    int my_projMatrixLoc;
+    int my_mvMatrixLoc;
+    int my_normalMatrixLoc;
+    int my_lightPosLoc;
+    QMatrix4x4 my_proj;
+    QMatrix4x4 my_camera;
+    QMatrix4x4 my_world;
+    bool my_transparent;
 };
 
 #endif

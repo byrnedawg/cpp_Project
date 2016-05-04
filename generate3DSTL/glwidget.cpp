@@ -6,22 +6,12 @@
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent),
-      m_xRot(0),
-      m_yRot(0),
-      m_zRot(0),
-      m_viewDis(-300),
-      m_program(0)
-{
-    m_core = QCoreApplication::arguments().contains(QStringLiteral("--coreprofile"));
-    // --transparent causes the clear color to be transparent. Therefore, on systems that
-    // support it, the widget will become transparent apart from the logo.
-    m_transparent = QCoreApplication::arguments().contains(QStringLiteral("--transparent"));
-    if (m_transparent) {
-        QSurfaceFormat fmt = format();
-        fmt.setAlphaBufferSize(8);
-        setFormat(fmt);
-    }
-}
+      my_xRot(0),
+      my_yRot(0),
+      my_zRot(0),
+      my_viewDis(-300),
+      my_program(0)
+{}
 
 GLWidget::~GLWidget()
 {
@@ -46,74 +36,61 @@ static void qNormalizeAngle(int &angle)
         angle -= 360 * 16;
 }
 
+// function called when sliders change value
 void GLWidget::setXRotation(int angle)
 {
     qNormalizeAngle(angle);
-    if (angle != m_xRot) {
-        m_xRot = angle;
+    if (angle != my_xRot) {
+        my_xRot = angle;
         emit xRotationChanged(angle);
         update();
     }
 }
 
+// function called when sliders change value
 void GLWidget::setYRotation(int angle)
 {
     qNormalizeAngle(angle);
-    if (angle != m_yRot) {
-        m_yRot = angle;
+    if (angle != my_yRot) {
+        my_yRot = angle;
         emit yRotationChanged(angle);
         update();
     }
 }
 
+// function called when sliders change value
 void GLWidget::setZRotation(int angle)
 {
     qNormalizeAngle(angle);
-    if (angle != m_zRot) {
-        m_zRot = angle;
+    if (angle != my_zRot) {
+        my_zRot = angle;
         emit zRotationChanged(angle);
         update();
     }
 }
 
+// function called when sliders change value
 void GLWidget::setView(int distance)
 {
-    if (distance != m_viewDis) {
-        m_camera.setToIdentity();
-        m_viewDis = distance;
-        m_camera.translate(0, 0, m_viewDis/10.0f); //sets camera distance
+    if (distance != my_viewDis) {
+        my_camera.setToIdentity();
+        my_viewDis = distance;
+        my_camera.translate(0, 0, my_viewDis/10.0f); //sets camera distance
         emit viewDistanceChanged(distance);
         update();
     }
-        /*
-        if(distance < m_viewDis)
-        {
-            m_viewDis = distance;
-            cout << "View Distance = " << m_viewDis << '\n';
-            //m_camera.translate(0, 0, -0.25f); //sets camera distance
-            m_camera.translate(0, 0, m_viewDis); //sets camera distance
-            emit viewDistanceChanged(distance);
-            update();
-        }else{
-            m_viewDis = distance;
-            cout << "View Distance = " << m_viewDis << '\n';
-           // m_camera.translate(0, 0, 0.25f); //sets camera distance
-             m_camera.translate(0, 0, m_viewDis); //sets camera distance
-            emit viewDistanceChanged(distance);
-            update();
-        }
-    }*/
 }
 
 void GLWidget::cleanup()
 {
     makeCurrent();
-    m_model3DVbo.destroy();
-    delete m_program;
-    m_program = 0;
+    my_model3DVbo.destroy();
+    delete my_program;
+    my_program = 0;
     doneCurrent();
 }
 
+// QOpenGL configuration variables
 static const char *vertexShaderSourceCore =
     "#version 150\n"
     "in vec4 vertex;\n"
@@ -169,109 +146,113 @@ static const char *fragmentShaderSource =
     "   gl_FragColor = vec4(col, 1.0);\n"
     "}\n";
 
+// needed for drawing with GL
 void GLWidget::initializeGL()
 {
-
     connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
 
     initializeOpenGLFunctions();
-    glClearColor(0, 0, 0, m_transparent ? 0 : 1);
+    glClearColor(0, 0, 0, my_transparent ? 0 : 1);
 
-    m_program = new QOpenGLShaderProgram;
-    m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, m_core ? vertexShaderSourceCore : vertexShaderSource);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, m_core ? fragmentShaderSourceCore : fragmentShaderSource);
-    m_program->bindAttributeLocation("vertex", 0);
-    m_program->bindAttributeLocation("normal", 1);
-    m_program->link();
+    my_program = new QOpenGLShaderProgram;
+    my_program->addShaderFromSourceCode(QOpenGLShader::Vertex, my_core ? vertexShaderSourceCore : vertexShaderSource);
+    my_program->addShaderFromSourceCode(QOpenGLShader::Fragment, my_core ? fragmentShaderSourceCore : fragmentShaderSource);
+    my_program->bindAttributeLocation("vertex", 0);
+    my_program->bindAttributeLocation("normal", 1);
+    my_program->link();
 
-    m_program->bind();
-    m_projMatrixLoc = m_program->uniformLocation("projMatrix");
-    m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
-    m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
-    m_lightPosLoc = m_program->uniformLocation("lightPos");
+    my_program->bind();
+    my_projMatrixLoc = my_program->uniformLocation("projMatrix");
+    my_mvMatrixLoc = my_program->uniformLocation("mvMatrix");
+    my_normalMatrixLoc = my_program->uniformLocation("normalMatrix");
+    my_lightPosLoc = my_program->uniformLocation("lightPos");
 
-
-    m_vao.create();
-    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
+    //QOpenGL Vertex Object
+    my_vao.create();
+    QOpenGLVertexArrayObject::Binder vaoBinder(&my_vao);
 
     // Setup our vertex buffer object.
-    m_model3DVbo.create();
-    m_model3DVbo.bind();
-    m_model3DVbo.allocate(m_model3D.constData(), m_model3D.count() * sizeof(GLfloat));
+    my_model3DVbo.create();
+    my_model3DVbo.bind();
+    //allocate memory by looking at the Draw3D objects data
+    my_model3DVbo.allocate(my_model3D.constData(), my_model3D.count() * sizeof(GLfloat));
 
     // Store the vertex attribute bindings for the program.
     setupVertexAttribs();
 
     // Our camera never changes in this example.
-    m_camera.setToIdentity();
-   // m_camera.translate(0, 0, -1);
-    m_camera.translate(0, 0, -300/10.0f); //sets camera distance
+    my_camera.setToIdentity();
+    my_camera.translate(0, 0, -300/10.0f); //sets camera distance
 
     // Light position is fixed.
-    m_program->setUniformValue(m_lightPosLoc, QVector3D(0, 0, 70)); // sets lighting
+    my_program->setUniformValue(my_lightPosLoc, QVector3D(0, 0, 70)); // sets lighting
 
-    m_program->release();
+    // releases active shader program
+    my_program->release();
 }
 
 void GLWidget::setupVertexAttribs()
 {
-    m_model3DVbo.bind();
+    my_model3DVbo.bind();
     QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
     f->glEnableVertexAttribArray(0);
     f->glEnableVertexAttribArray(1);
     f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), 0);
     f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void *>(3 * sizeof(GLfloat)));
-    m_model3DVbo.release();
+    my_model3DVbo.release();
 }
 
 void GLWidget::paintGL()
 {
+    // needed for gl functions
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
-    m_world.setToIdentity();
-    m_world.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-    m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
-    m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
+    //set original view for model
+    my_world.setToIdentity();
+    my_world.rotate(180.0f - (my_xRot / 16.0f), 1, 0, 0);
+    my_world.rotate(my_yRot / 16.0f, 0, 1, 0);
+    my_world.rotate(my_zRot / 16.0f, 0, 0, 1);
 
-    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
-    m_program->bind();
-    m_program->setUniformValue(m_projMatrixLoc, m_proj);
-    m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
-    QMatrix3x3 normalMatrix = m_world.normalMatrix();
-    m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
+    QOpenGLVertexArrayObject::Binder vaoBinder(&my_vao);
+    my_program->bind();
+    my_program->setUniformValue(my_projMatrixLoc, my_proj);
+    my_program->setUniformValue(my_mvMatrixLoc, my_camera * my_world);
+    QMatrix3x3 normalMatrix = my_world.normalMatrix();
+    my_program->setUniformValue(my_normalMatrixLoc, normalMatrix);
 
-    glDrawArrays(GL_TRIANGLES, 0, m_model3D.vertexCount());
+    //Draw triangles based on Draw3D objects data
+    glDrawArrays(GL_TRIANGLES, 0, my_model3D.vertexCount());
 
 
-    m_program->release();
+    my_program->release();
 }
 
 void GLWidget::resizeGL(int w, int h)
 {
-    m_proj.setToIdentity();
-    //m_proj.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
-   // m_proj.perspective(100.0f, GLfloat(w) / h, 0.00f, 100.0f);
-    m_proj.perspective(45.0f,GLfloat(w) / h, 0.01f, 300.0f); // max is 300
+    my_proj.setToIdentity();
+    my_proj.perspective(45.0f,GLfloat(w) / h, 0.01f, 300.0f); // max is 300
 }
 
+// function for moving the model with the mouse
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
-    m_lastPos = event->pos();
+    my_lastPos = event->pos();
 }
 
+// function for moving the model with the mouse
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    int dx = event->x() - m_lastPos.x();
-    int dy = event->y() - m_lastPos.y();
+    int dx = event->x() - my_lastPos.x();
+    int dy = event->y() - my_lastPos.y();
 
     if (event->buttons() & Qt::LeftButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setYRotation(m_yRot + 8 * dx);
+        setXRotation(my_xRot + 8 * dy);
+        setYRotation(my_yRot + 8 * dx);
     } else if (event->buttons() & Qt::RightButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setZRotation(m_zRot + 8 * dx);
+        setXRotation(my_xRot + 8 * dy);
+        setZRotation(my_zRot + 8 * dx);
     }
-    m_lastPos = event->pos();
+    my_lastPos = event->pos();
 }
