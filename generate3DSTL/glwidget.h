@@ -40,6 +40,7 @@ protected:
     void resizeGL(int width, int height) Q_DECL_OVERRIDE;
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
     void mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void addShapesToModel();
 
 private:
     void setupVertexAttribs();

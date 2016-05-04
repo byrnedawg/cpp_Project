@@ -84,7 +84,7 @@ OBJECTS       = debug/glwidget.o \
 DIST          =  ../generate3DSTL/glwidget.h \
 		../generate3DSTL/window.h \
 		../generate3DSTL/mainwindow.h \
-		../generate3DSTL/draw3d.h \
+		draw3d.h \
 		../generate3DSTL/shapes3d.h \
 		../generate3DSTL/tetrahedron3d.h \
 		../generate3DSTL/cylinder3d.h \
@@ -299,21 +299,6 @@ debug/moc_glwidget.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QOpenGLWidget \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector4d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qquaternion.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qgenericmatrix.h \
-		../generate3DSTL/draw3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		C:/Qt/5.5/mingw492_32/include/QtGui/QVector3D \
-		../generate3DSTL/rectangle3D.h \
-		../generate3DSTL/shapes3d.h \
-		../generate3DSTL/tetrahedron3d.h \
-		../generate3DSTL/cylinder3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
-		../generate3DSTL/pyramid3d.h \
-		../generate3DSTL/cone3d.h \
-		../generate3DSTL/triangle3d.h \
-		../generate3DSTL/sphere3d.h \
-		../generate3DSTL/iconosphere3d.h \
-		../generate3DSTL/cube2.h \
-		../generate3DSTL/tcube.h \
 		../generate3DSTL/glwidget.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/ByrneDawg/Documents/git/cpp_project/generate3DSTL -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ../generate3DSTL/glwidget.h -o debug/moc_glwidget.cpp
 
@@ -419,6 +404,9 @@ debug/moc_window.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../generate3DSTL/window.h
 	'C:\Qt\5.5\mingw492_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/ByrneDawg/Documents/git/cpp_project/generate3DSTL -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore -I. ../generate3DSTL/window.h -o debug/moc_window.cpp
 
@@ -678,21 +666,6 @@ debug/glwidget.o: ../generate3DSTL/glwidget.cpp ../generate3DSTL/glwidget.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector4d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qquaternion.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qgenericmatrix.h \
-		../generate3DSTL/draw3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		C:/Qt/5.5/mingw492_32/include/QtGui/QVector3D \
-		../generate3DSTL/rectangle3D.h \
-		../generate3DSTL/shapes3d.h \
-		../generate3DSTL/tetrahedron3d.h \
-		../generate3DSTL/cylinder3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
-		../generate3DSTL/pyramid3d.h \
-		../generate3DSTL/cone3d.h \
-		../generate3DSTL/triangle3d.h \
-		../generate3DSTL/sphere3d.h \
-		../generate3DSTL/iconosphere3d.h \
-		../generate3DSTL/cube2.h \
-		../generate3DSTL/tcube.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QMouseEvent \
 		C:/Qt/5.5/mingw492_32/include/QtGui/QOpenGLShaderProgram \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qopenglshaderprogram.h \
@@ -951,22 +924,10 @@ debug/window.o: ../generate3DSTL/window.cpp ../generate3DSTL/glwidget.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector4d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qquaternion.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qgenericmatrix.h \
-		../generate3DSTL/draw3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		C:/Qt/5.5/mingw492_32/include/QtGui/QVector3D \
-		../generate3DSTL/rectangle3D.h \
-		../generate3DSTL/shapes3d.h \
-		../generate3DSTL/tetrahedron3d.h \
-		../generate3DSTL/cylinder3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
-		../generate3DSTL/pyramid3d.h \
-		../generate3DSTL/cone3d.h \
-		../generate3DSTL/triangle3d.h \
-		../generate3DSTL/sphere3d.h \
-		../generate3DSTL/iconosphere3d.h \
-		../generate3DSTL/cube2.h \
-		../generate3DSTL/tcube.h \
 		../generate3DSTL/window.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
 		../generate3DSTL/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
@@ -1106,19 +1067,12 @@ debug/mainwindow.o: ../generate3DSTL/mainwindow.cpp ../generate3DSTL/mainwindow.
 		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		../generate3DSTL/window.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmenu.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialog.h
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o ../generate3DSTL/mainwindow.cpp
 
-debug/draw3d.o: ../generate3DSTL/draw3d.cpp ../generate3DSTL/draw3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qopengl.h \
+debug/draw3d.o: ../generate3DSTL/draw3d.cpp C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
@@ -1146,52 +1100,7 @@ debug/draw3d.o: ../generate3DSTL/draw3d.cpp ../generate3DSTL/draw3d.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qt_windows.h \
-		C:/Qt/5.5/mingw492_32/include/QtANGLE/GLES3/gl3.h \
-		C:/Qt/5.5/mingw492_32/include/QtANGLE/GLES3/gl3platform.h \
-		C:/Qt/5.5/mingw492_32/include/QtANGLE/KHR/khrplatform.h \
-		C:/Qt/5.5/mingw492_32/include/QtANGLE/GLES2/gl2.h \
-		C:/Qt/5.5/mingw492_32/include/QtANGLE/GLES2/gl2platform.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qopengles2ext.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qopenglext.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVector \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/QVector3D \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qvector3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
-		../generate3DSTL/rectangle3D.h \
-		../generate3DSTL/shapes3d.h \
-		../generate3DSTL/tetrahedron3d.h \
-		../generate3DSTL/cylinder3d.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
-		../generate3DSTL/pyramid3d.h \
-		../generate3DSTL/cone3d.h \
-		../generate3DSTL/triangle3d.h \
-		../generate3DSTL/sphere3d.h \
-		../generate3DSTL/iconosphere3d.h \
-		../generate3DSTL/cube2.h \
-		../generate3DSTL/tcube.h
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/draw3d.o ../generate3DSTL/draw3d.cpp
 
 debug/shapes3d.o: ../generate3DSTL/shapes3d.cpp ../generate3DSTL/shapes3d.h \

@@ -2,6 +2,7 @@
 #define DRAW3D_H
 
 #include <qopengl.h>
+#include <stdlib.h>
 #include <QVector>
 #include <QVector3D>
 #include <iostream>
@@ -16,6 +17,8 @@
 #include "iconosphere3d.h"
 #include "cube2.h"
 #include "tcube.h"
+#include "window.h"
+
 
 using namespace std;
 
@@ -26,25 +29,15 @@ public:
     const GLfloat *constData() const { return m_data.constData(); }
     int count() const { return m_count; }
     int vertexCount() const { return m_count / 6; }
-
+    void print3D(Shapes3D& a);
+    void closeSTLWriter();
     ofstream stlWriter; // output file object to write stl file data
 
 private:
-    void print3D(Shapes3D& a);
+   // void print3D(Shapes3D& a);
     QVector<GLfloat> m_data;
     int m_count;
     int vectorSize;
-
-    //Not needed anymore add is handled in the shape class
-    void add(const QVector3D &v, const QVector3D &n);
-
-    /****************************************************************************************************************/
-    //Writen by Shaotu Jia
-    void sphere(GLfloat x, GLfloat y, GLfloat z, GLfloat Radius, int Numsectors);
-    void quad2(GLfloat x, GLfloat y, GLfloat z, GLfloat x1, GLfloat y1, GLfloat z2, GLfloat x4, GLfloat y4, GLfloat z4, int NumSectors, GLfloat radius, GLfloat angle, GLfloat anglez);
-
-    /***************************************************************************************************************************************************************************************/
-
 };
 
 #endif // DRAW3D_H
