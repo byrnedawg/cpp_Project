@@ -33,6 +33,8 @@ private:
     QSlider *zSlider;
     QSlider *viewSlider;
 
+    QPushButton* btnRectangle;
+
     QLabel *modelLabel;
     QLabel *xLabel;
     QLabel *yLabel;

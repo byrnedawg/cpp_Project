@@ -27,6 +27,9 @@ Window::Window(MainWindow *mw): mainWindow(mw){
     zLabel = new QLabel(tr("Z"));
     viewLabel = new QLabel(tr("Zoom"));
     modelLabel = new QLabel(tr("3D Model View"));
+    btnRectangle = new QPushButton("Add Rectangle");
+
+
 
     //sync sliders with the function they govern in GLWidget
     connect(xSlider, &QSlider::valueChanged, glWidget, &GLWidget::setXRotation);
@@ -38,6 +41,9 @@ Window::Window(MainWindow *mw): mainWindow(mw){
 
     connect(viewSlider, &QSlider::valueChanged, glWidget, &GLWidget::setView);
     connect(glWidget, &GLWidget::viewDistanceChanged, viewSlider, &QSlider::setValue);
+
+    //connect(btnRectangle, SIGNAL(clicked()), glWidget, SLOT(addRectangle()));
+
 
     //lines up widgets vertially or horizontally deppending on which layout is used
     // container lines up left to right on the window
@@ -59,6 +65,8 @@ Window::Window(MainWindow *mw): mainWindow(mw){
     QWidget *w = new QWidget;
     w->setLayout(container);
     mainLayout->addWidget(w);
+
+    //mainLayout->addWidget(btnRectangle);
 
     setLayout(mainLayout);
 

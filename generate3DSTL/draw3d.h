@@ -31,6 +31,7 @@ public:
     int vertexCount() const { return m_count / 6; }
     void print3D(Shapes3D& a);
     void closeSTLWriter();
+    void promptUserInput();
     ofstream stlWriter; // output file object to write stl file data
 
 private:

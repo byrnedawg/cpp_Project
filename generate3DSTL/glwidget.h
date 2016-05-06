@@ -26,6 +26,7 @@ public slots:
     void setYRotation(int angle);
     void setZRotation(int angle);
     void setView(int distance);
+    void addRectangle();
     void cleanup();
 
 signals:
@@ -33,6 +34,7 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
     void viewDistanceChanged(int distance);
+    void rectChanged();
 
 protected:
     void initializeGL() Q_DECL_OVERRIDE;

@@ -1,8 +1,9 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QSurfaceFormat>
-
 #include "mainwindow.h"
+
+
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     QSurfaceFormat::setDefaultFormat(fmt);
 
     MainWindow mainWindow;
+
     if (QCoreApplication::arguments().contains(QStringLiteral("--transparent"))) {
         mainWindow.setAttribute(Qt::WA_TranslucentBackground);
         mainWindow.setAttribute(Qt::WA_NoSystemBackground, false);

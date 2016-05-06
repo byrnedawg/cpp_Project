@@ -4,6 +4,7 @@
 #include <QCoreApplication>
 #include <math.h>
 
+
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent),
       my_xRot(0),
@@ -11,7 +12,23 @@ GLWidget::GLWidget(QWidget *parent)
       my_zRot(0),
       my_viewDis(-300),
       my_program(0)
-{}
+{
+   //Enter Shapes into model with either a prompt or the void function addShapesToModel()
+    my_model3D.promptUserInput(); // prompts the User to enter in shape data
+    // addShapesToModel(); // adds the shapes we want to the model
+    my_model3D.closeSTLWriter();
+    // Done adding shapes to model close the STL Writer
+
+    my_core = QCoreApplication::arguments().contains(QStringLiteral("--coreprofile"));
+       // --transparent causes the clear color to be transparent. Therefore, on systems that
+       // support it, the widget will become transparent apart from the logo.
+       my_transparent = QCoreApplication::arguments().contains(QStringLiteral("--transparent"));
+       if (my_transparent) {
+           QSurfaceFormat fmt = format();
+           fmt.setAlphaBufferSize(8);
+           setFormat(fmt);
+       }
+}
 
 GLWidget::~GLWidget()
 {
@@ -83,6 +100,13 @@ void GLWidget::setView(int distance)
     }
 }
 
+void GLWidget::addRectangle(){
+    Rectangle3D rectangle2(-7.0f, 7.0f, 0.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
+    my_model3D.print3D(rectangle2);
+    update();
+   //cout << "pressed\n";
+}
+
 void GLWidget::cleanup()
 {
     makeCurrent();
@@ -151,8 +175,6 @@ static const char *fragmentShaderSource =
 // needed for drawing with GL
 void GLWidget::initializeGL()
 {
-    addShapesToModel(); // adds the shapes we want to the model
-    my_model3D.closeSTLWriter();
 
     connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
 
@@ -179,6 +201,7 @@ void GLWidget::initializeGL()
     // Setup our vertex buffer object.
     my_model3DVbo.create();
     my_model3DVbo.bind();
+
     //allocate memory by looking at the Draw3D objects data
     my_model3DVbo.allocate(my_model3D.constData(), my_model3D.count() * sizeof(GLfloat));
 
@@ -264,6 +287,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 
 void GLWidget::addShapesToModel()
 {
+
     Rectangle3D rectangle1(-7.0f, 7.0f, 10.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
 
     Tetrahedron3D tetrahedron1(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
@@ -304,5 +328,7 @@ void GLWidget::addShapesToModel()
     my_model3D.print3D(iconosphere1);
    // my_model3D.print3D(cylinder2);
    // my_model3D.print3D(cylinder3);
+
+
 
 }
