@@ -157,11 +157,11 @@ void Draw3D::promptUserInput()
         QString item = QInputDialog::getItem(0,"Shape to add", "Shapes:", items, 0, false, &ok);
         if (ok && (!item.compare("Rectangle")))
         {
-            x = QInputDialog::getDouble(0, "add Rectangle", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Rectangle", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Rectangle", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Rectangle", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Rectangle", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Rectangle", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     length = QInputDialog::getDouble(0, "add Rectangle", "Length:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -175,11 +175,11 @@ void Draw3D::promptUserInput()
         }
         else if(ok && (!item.compare("Extruded Rectangle")))
         {
-            x = QInputDialog::getDouble(0, "add Extruded Rectangle", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Extruded Rectangle", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Extruded Rectangle", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Extruded Rectangle", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Extruded Rectangle", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Extruded Rectangle", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     length = QInputDialog::getDouble(0, "add Extruded Rectangle", "Length:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -195,11 +195,11 @@ void Draw3D::promptUserInput()
         }
         else if(ok && (!item.compare("Cylinder")))
         {
-            x = QInputDialog::getDouble(0, "add Cylinder", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Cylinder", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Cylinder", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Cylinder", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Cylinder", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Cylinder", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     radius = QInputDialog::getDouble(0, "add Cylinder", "Radius:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -213,11 +213,11 @@ void Draw3D::promptUserInput()
         }
         else if(ok && (!item.compare("Extruded Cylinder")))
         {
-            x = QInputDialog::getDouble(0, "add Extruded Cylinder", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Extruded Cylinder", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Extruded Cylinder", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Extruded Cylinder", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Extruded Cylinder", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Extruded Cylinder", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     inRadius = QInputDialog::getDouble(0, "add Extruded Cylinder", "in Radius:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -233,11 +233,11 @@ void Draw3D::promptUserInput()
         }
         else if(ok && (!item.compare("Cone")))
         {
-            x = QInputDialog::getDouble(0, "add Cone", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Cone", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Cone", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Cone", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Cone", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Cone", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     radius = QInputDialog::getDouble(0, "add Cone", "Radius:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -253,11 +253,11 @@ void Draw3D::promptUserInput()
         }
         else if(ok && (!item.compare("Iconosphere")))
         {
-            x = QInputDialog::getDouble(0, "add Iconosphere", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Iconosphere", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Iconosphere", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Iconosphere", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Iconosphere", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Iconosphere", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     radius = QInputDialog::getDouble(0, "add Iconosphere", "Radius:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -270,11 +270,11 @@ void Draw3D::promptUserInput()
 
         else if(ok && (!item.compare("Pyramid")))
         {
-            x = QInputDialog::getDouble(0, "add Pyramid", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Pyramid", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Pyramid", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Pyramid", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Pyramid", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Pyramid", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     length = QInputDialog::getDouble(0, "add Pyramid", "Length:", 1.0, 0.1, 30, 1, &ok);
             if(ok)
@@ -289,11 +289,11 @@ void Draw3D::promptUserInput()
 
         else if(ok && (!item.compare("Tetrahedron")))
         {
-            x = QInputDialog::getDouble(0, "add Tetrahedron", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Tetrahedron", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Tetrahedron", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Tetrahedron", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                z = QInputDialog::getDouble(0, "add Tetrahedron", "Z:", 1.0, -30, 30, 1, &ok);
+                z = QInputDialog::getDouble(0, "add Tetrahedron", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                 x2 = QInputDialog::getDouble(0, "add Tetrahedron", "X2:", 1.0, -30, 30, 1, &ok);
             if(ok)
@@ -316,11 +316,11 @@ void Draw3D::promptUserInput()
 
         else if(ok && (!item.compare("Triangle")))
         {
-            x = QInputDialog::getDouble(0, "add Triangle", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Triangle", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Triangle", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Triangle", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Triangle", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Triangle", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     length = QInputDialog::getDouble(0, "add Triangle", "Length:", 1.0, .1, 30, 1, &ok);
             if(ok)
@@ -334,15 +334,15 @@ void Draw3D::promptUserInput()
         }
         else
         {
-            x = QInputDialog::getDouble(0, "add Sphere", "X:", 1.0, -30, 30, 1, &ok);
+            x = QInputDialog::getDouble(0, "add Sphere", "X:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                y = QInputDialog::getDouble(0, "add Sphere", "Y:", 1.0, -30, 30, 1, &ok);
+                y = QInputDialog::getDouble(0, "add Sphere", "Y:", 0.0, -30, 30, 1, &ok);
             if(ok)
-                    z = QInputDialog::getDouble(0, "add Sphere", "Z:", 1.0, -30, 30, 1, &ok);
+                    z = QInputDialog::getDouble(0, "add Sphere", "Z:", 0.0, -30, 30, 1, &ok);
             if(ok)
                     radius = QInputDialog::getDouble(0, "add Sphere", "Radius:", 1.0, .1, 30, 1, &ok);
             if(ok)
-                    NumSectors = QInputDialog::getInt(0, "add Sphere", "NumSectors:", 100, 1, 100, 1, &ok);
+                    NumSectors = QInputDialog::getInt(0, "add Sphere", "NumSectors:", 30, 10, 50, 1, &ok);
             if(ok){
                 Sphere3D sphere(x,y,z, radius, NumSectors);
                 print3D(sphere);
