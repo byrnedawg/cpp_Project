@@ -239,7 +239,8 @@ void GLWidget::paintGL()
 
     //set original view for model
     my_world.setToIdentity();
-    my_world.rotate(180.0f - (my_xRot / 16.0f), 1, 0, 0);
+   // my_world.rotate(180.0f - (my_xRot / 16.0f), 1, 0, 0);
+    my_world.rotate(my_xRot / 16.0f, 1, 0, 0);
     my_world.rotate(my_yRot / 16.0f, 0, 1, 0);
     my_world.rotate(my_zRot / 16.0f, 0, 0, 1);
 
