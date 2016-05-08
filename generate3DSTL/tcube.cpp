@@ -1,5 +1,8 @@
 #include "tcube.h"
-
+#include<qmath.h>
+#include <cmath>
+#include <iostream>
+using namespace std;
 Tcube::~Tcube()
 {
 

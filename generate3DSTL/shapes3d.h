@@ -25,7 +25,6 @@ protected:
                  GLfloat z3, GLfloat x4, GLfloat y4, GLfloat z4);
 
     virtual void draw() = 0;
-   // virtual void tdraw()=0;
     //virtual void volume() = 0;
 
 public:

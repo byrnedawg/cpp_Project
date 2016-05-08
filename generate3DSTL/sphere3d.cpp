@@ -1,7 +1,11 @@
 #include "sphere3d.h"
 
 Sphere3D::Sphere3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors) : Shapes3D(x, y, z), radius(radius), NumSectors(NumSectors){
-    shape_data.resize(6*324*NumSectors); // 6*324*NumSectors
+    if(NumSectors == 31){
+        shape_data.resize(6*360*NumSectors); // 6*324*NumSectors // works for 30 // 6*348*NumSectors works for 32 // 6*360*NumSectors works for 33 // 6*372*NumSectors for 34 // 6*384*NumSectors 3
+    }else{
+        shape_data.resize(6*12*(NumSectors-3)*NumSectors); // 6*324*NumSectors // works for 30 // 6*348*NumSectors works for 32 // 6*360*NumSectors works for 33 // 6*372*NumSectors for 34 // 6*384*NumSectors 35
+    }
     this->draw();
 }
 
