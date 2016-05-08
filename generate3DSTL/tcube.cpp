@@ -1,8 +1,5 @@
 #include "tcube.h"
-#include<qmath.h>
-#include <cmath>
-#include <iostream>
-using namespace std;
+
 Tcube::~Tcube()
 {
 
@@ -12,10 +9,10 @@ Tcube::Tcube(GLfloat x, GLfloat y, GLfloat z, GLfloat length, GLfloat width, GLf
     Shapes3D(x,y,z),length(length),width(width),height(height),rotation(rotation),slice(slice)
 {
     shape_data.resize(216*slice);//6 values * 6 vertex * 6 faces * slice
-    this->tdraw();
+    this->draw();
 }
 
-void Tcube::tdraw()
+void Tcube::draw()
 {
    // orig(x,y,z);
     orig.setX(x);
@@ -90,7 +87,7 @@ void Tcube::tdraw()
 
   //  Cube2(p1,p2,p3,p4,p5,p6,p7,p8);
   //  Cube2::draw();
-      face((GLfloat)p1.x(),(GLfloat)p1.y(),(GLfloat)p1.z(),(GLfloat)p2.x(),(GLfloat)p2.y(),(GLfloat)p2.z(),(GLfloat)p3.x(),(GLfloat)p3.y(),(GLfloat)p3.z(),(GLfloat)p4.x(),(GLfloat)p4.y(),(GLfloat)p4.z());   //bottom
+      face((GLfloat)p1.x(),(GLfloat)p1.y(),(GLfloat)p1.z(),(GLfloat)p4.x(),(GLfloat)p4.y(),(GLfloat)p4.z(),(GLfloat)p3.x(),(GLfloat)p3.y(),(GLfloat)p3.z(),(GLfloat)p2.x(),(GLfloat)p2.y(),(GLfloat)p2.z());   //bottom
       face((GLfloat)p5.x(),(GLfloat)p5.y(),(GLfloat)p5.z(),(GLfloat)p6.x(),(GLfloat)p6.y(),(GLfloat)p6.z(),(GLfloat)p7.x(),(GLfloat)p7.y(),(GLfloat)p7.z(),(GLfloat)p8.x(),(GLfloat)p8.y(),(GLfloat)p8.z()); // top
       face((GLfloat)p1.x(),(GLfloat)p1.y(),(GLfloat)p1.z(),(GLfloat)p2.x(),(GLfloat)p2.y(),(GLfloat)p2.z(),(GLfloat)p6.x(),(GLfloat)p6.y(),(GLfloat)p6.z(),(GLfloat)p5.x(),(GLfloat)p5.y(),(GLfloat)p5.z()); // width side
       face((GLfloat)p2.x(),(GLfloat)p2.y(),(GLfloat)p2.z(),(GLfloat)p3.x(),(GLfloat)p3.y(),(GLfloat)p3.z(),(GLfloat)p7.x(),(GLfloat)p7.y(),(GLfloat)p7.z(),(GLfloat)p6.x(),(GLfloat)p6.y(),(GLfloat)p6.z()); // width side

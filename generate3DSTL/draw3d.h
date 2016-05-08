@@ -15,7 +15,7 @@
 #include "triangle3d.h"
 #include "sphere3d.h"
 #include "iconosphere3d.h"
-#include "cube2.h"
+//#include "cube2.h"
 #include "tcube.h"
 #include "window.h"
 

@@ -239,8 +239,7 @@ void GLWidget::paintGL()
 
     //set original view for model
     my_world.setToIdentity();
-   // my_world.rotate(180.0f - (my_xRot / 16.0f), 1, 0, 0);
-    my_world.rotate(my_xRot / 16.0f, 1, 0, 0);
+    my_world.rotate(180.0f - (my_xRot / 16.0f), 1, 0, 0);
     my_world.rotate(my_yRot / 16.0f, 0, 1, 0);
     my_world.rotate(my_zRot / 16.0f, 0, 0, 1);
 
@@ -314,6 +313,8 @@ void GLWidget::addShapesToModel()
    //  print3D(w);
     Cylinder3D cylinder3(30,30,10,10,0,5,10,M_PI*2,100); //(axis.x,axis.y,center.x,center.y,center.z,radius,height, rotation angle, accuarcy)
 
+    Tcube TwistCube1 (0,0,0,20,10,10,M_PI,50); //(orig.x,orig.y,orig.z,length,width,height,rotation angle, accuracy)
+
 
     my_model3D.print3D(rectangle1);
     my_model3D.print3D(tetrahedron1);
@@ -329,6 +330,7 @@ void GLWidget::addShapesToModel()
     my_model3D.print3D(iconosphere1);
    // my_model3D.print3D(cylinder2);
    // my_model3D.print3D(cylinder3);
+    my_model3D.print3D(TwistCube1);
 
 
 

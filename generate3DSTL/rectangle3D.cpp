@@ -114,7 +114,7 @@ void Rectangle3D::offset(){
     GLfloat y8 = y4+offsetY;
     GLfloat z8 = z4+height;
 
-    face(x1,y1,z1,x2,y2,z2,x3,y3,z3,x4,y4,z4);
+    face(x1,y1,z1,x4,y4,z4,x3,y3,z3,x2,y2,z2); //fixed normal error
     face(x5,y5,z5,x6,y6,z6,x7,y7,z7,x8,y8,z8);
     face(x1,y1,z1,x2,y2,z2,x6,y6,z6,x5,y5,z5);
     face(x2,y2,z2,x3,y3,z3,x7,y7,z7,x6,y6,z6);
