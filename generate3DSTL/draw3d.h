@@ -1,3 +1,5 @@
+//Author: Gregory Byrne & Shaotu Jia
+
 #ifndef DRAW3D_H
 #define DRAW3D_H
 
@@ -26,12 +28,12 @@ class Draw3D
 {
 public:
     Draw3D();
-    const GLfloat *constData() const { return m_data.constData(); }
-    int count() const { return m_count; }
-    int vertexCount() const { return m_count / 6; }
-    void print3D(Shapes3D& a);
-    void closeSTLWriter();
-    void promptUserInput();
+    const GLfloat *constData() const { return m_data.constData(); } //export model data
+    int count() const { return m_count; } // keeps count of model data
+    int vertexCount() const { return m_count / 6; } // keeps count of vertex
+    void print3D(Shapes3D& a); //adds shape data to stl file and model data
+    void closeSTLWriter(); // closes the stl file
+    void promptUserInput(); // ask user to input shapes into model
     ofstream stlWriter; // output file object to write stl file data
 
 private:

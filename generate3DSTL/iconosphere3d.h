@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #ifndef ICONOSPHERE3D_H
 #define ICONOSPHERE3D_H
 
@@ -11,6 +13,7 @@ private:
     int NumSectors;
 
 public:
+    //define iconosphere
     Iconosphere3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, int NumSectors);
 
     ~Iconosphere3D();

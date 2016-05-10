@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "shapes3d.h"
 
 Shapes3D::Shapes3D(GLfloat x, GLfloat y, GLfloat z) : x(x), y(y), z(z), shape_count(0)

@@ -1,3 +1,5 @@
+//Author: Gregory Byrne & Shaotu Jia
+
 #include "draw3d.h"
 #include <qmath.h>
 #include <QInputDialog>
@@ -11,56 +13,8 @@ Draw3D::Draw3D()
 
     //Define 3D shapes to be drawn and outputed to stl file named model.stl
     //Draw Model below ................................................
-    stlWriter.open ("model3D.stl"); //name of stl file
+    stlWriter.open ("model.stl"); //name of stl file
     stlWriter << "solid model\n"; //first line of stl file
-
-    /*
-
-    Rectangle3D rectangle1(-7.0f, 7.0f, 10.0f, 7.0f, 5.0f, 2.5f); //rectangle x, y, z, length, width, height - works
-
-    Tetrahedron3D tetrahedron1(7.0f,0.0f, 0.0, 0.0, 7.0f, 0, 7.0f, 7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z
-    Tetrahedron3D tetrahedron2(-7.0f,0.0f, 0, 0, -7.0f, 0, -7.0f, -7.0f, 0, 7.0f); //Draw tetrahedron 3 x,y,z points and height of centroid z - works
-
-    Cylinder3D octagon1(8.0f, -8.0f,-2.0f,3.0f,3.0f,8); //cylinder x, y, z, radius, height, NumSectors - 8 creates octagon
-    Cylinder3D cylinder1(-9.0f, -9.0f,-2.0f,2.5f,3.0f,100); //cylinder x, y, z, radius, height, NumSectors
-
-    Cylinder3D exCylinder1(0.0f, 0.0f, -4.0f, 1.0f , 2.5f, 8.0f,100); //extrudedCylinder x, y, z, inRadius, outRadius height, NumSectors
-
-    Pyramid3D pyramid1(8.0f, 8.0f, 1.0f, 4.0f, 4.0f, 5.0f); //pyramid x, y, z, length, width, height - works
-    Pyramid3D pyramid2(8.0f, 8.0f, 0.0f, 4.0f, 4.0f, -5.0f);//pyramid negative height flips over the pyramid
-
-    Cone3D cone1(5.0f, -5.0f, 2.0f,3.0f,9.0f,100, true); //Draw a cone with x,y,z, radius, height,numSides, cap - cover open end of cone T or F
-
-    Triangle3D triangle1(-11.0f, 0.0f, 0.0f, 7.0f, 5.0f, 2.5f); //triangle x, y, z, length, width, height - works
-
-    Rectangle3D exRectangle1(-3.0f, -3.0f, 0.0f, 6.0f, 6.0f, 4.0f, 0.5f); //Extruded rectangle x, y, z, length, width, height - works
-
-    Iconosphere3D iconosphere1(-15.0f, -15.0f, 0.0f,5.0f, 1); // x, y, z, radius, NumSectors
-
-    Cylinder3D cylinder2 (15,-15,0,5,10,M_PI/4,M_PI/4,30); //(center.x,center.y,center.z,radius,height,incline in x-drection,incline in y-direction,accurarcy)
-   //  print3D(w);
-    Cylinder3D cylinder3(30,30,10,10,0,5,10,M_PI*2,100); //(axis.x,axis.y,center.x,center.y,center.z,radius,height, rotation angle, accuarcy)
-
-
-   print3D(rectangle1);
-   print3D(tetrahedron1);
-   print3D(tetrahedron2);
-   print3D(octagon1);
-   print3D(cylinder1);
-   print3D(exCylinder1);
-   print3D(pyramid1);
-   print3D(pyramid2);
-   print3D(cone1);
-   print3D(triangle1);
-   print3D(exRectangle1);
-   print3D(iconosphere1);
-   print3D(cylinder2);
-   print3D(cylinder3);
-
-
-    //3D figures in stl file and 3D model space
-    closeSTLWriter();
-    */
 }
 
 void Draw3D::closeSTLWriter(){
@@ -71,11 +25,12 @@ void Draw3D::closeSTLWriter(){
 
 void Draw3D::print3D(Shapes3D& a)
 {
-   vectorSize += a.shape_data.size();
+   vectorSize += a.shape_data.size(); //increase size of vector as shapes are added
    m_data.resize(vectorSize);
    GLfloat *p = m_data.data() + m_count;
    int index = 0;
    GLfloat x, y, z, nx, ny, nz;
+   // as shape data is added to model data generate stl file format
    for(QVector<GLfloat>::iterator i = a.shape_data.begin(); i != a.shape_data.end(); i++){
        *p++ = *i;
        if(index == 0){
@@ -124,6 +79,7 @@ void Draw3D::print3D(Shapes3D& a)
    }
 }
 
+// prompt user with dialog input boxes to create shapes to be added to the model for display and stl file output
 void Draw3D::promptUserInput()
 {
     int answer = 0;
@@ -144,8 +100,8 @@ void Draw3D::promptUserInput()
      GLfloat inRadius = 0;
      GLfloat outRadius = 0;
      GLfloat rotation=0;
-     GLfloat inclineX=0;
-     GLfloat inclineY=0;
+     GLfloat inclineX=0;  //incline in x axis direction
+     GLfloat inclineY=0; //incline in y axis direction
      GLfloat xz;
      GLfloat yz; //the rotation center of twisted cylinder
      GLfloat offsetX;

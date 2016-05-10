@@ -1,8 +1,11 @@
+//Author: Gregory Byrne
+
 #ifndef PYRAMID3D_H
 #define PYRAMID3D_H
 
 #include "shapes3d.h"
 
+//Create pyramid shape
 class Pyramid3D: public Shapes3D {
 
 private:

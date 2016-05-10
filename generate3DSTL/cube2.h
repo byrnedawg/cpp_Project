@@ -1,7 +1,11 @@
+//Author: Shaotu Jia
+
 #ifndef CUBE2_H
 #define CUBE2_H
 #include "shapes3d.h"
 
+/* This constructor is to draw a cube with arbitary vertex
+ */
 
 class Cube2:public Shapes3D
 {

@@ -1,3 +1,5 @@
+//Author: Shaotu Jia
+
 #include "cube2.h"
 
 Cube2::~Cube2()

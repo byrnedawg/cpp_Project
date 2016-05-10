@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "glwidget.h"
 #include <QMouseEvent>
 #include <QOpenGLShaderProgram>
@@ -286,6 +288,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     my_lastPos = event->pos();
 }
 
+// demo function to add defined shape objects to the model space
 void GLWidget::addShapesToModel()
 {
 

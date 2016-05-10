@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
@@ -18,6 +20,7 @@ public:
     GLWidget(QWidget *parent = 0);
     ~GLWidget();
 
+    //size of widget
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
     QSize sizeHint() const Q_DECL_OVERRIDE;
 

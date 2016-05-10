@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "mainwindow.h"
 #include "window.h"
 

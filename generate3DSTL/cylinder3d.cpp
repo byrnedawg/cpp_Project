@@ -1,3 +1,6 @@
+//Author: Gregory Byrne for Cylinder and Extruded Cylinder with "draw()" and "extrude()" functions
+//        Shaotu Jia for inclined Cylinder and Rotate Cylinder with "incline()" and "rotate()" functions
+
 #include "cylinder3d.h"
 #include <cmath>
 #include<iostream>
@@ -101,13 +104,11 @@ void Cylinder3D::rotate(){
     GLfloat slice=height/NumSectors;
     GLfloat angler=rotation/NumSectors;
     GLfloat length=sqrt((x-xz)*(x-xz)+(y-yz)*(y-yz));
-   // std::cout<<" rotation angler="<<angler<<"\n";
 
     for(int j=0;j<NumSectors;++j){
         x=xz+length*qCos(angler*j);
         y=yz+length*qSin(angler*j);
 
-       // std::cout<<"x="<<x<<" y="<<y<<"\n";
 
         for (int i = 0; i < NumSectors; ++i) {
 
@@ -127,7 +128,6 @@ void Cylinder3D::rotate(){
             GLfloat x4 = radius * angleSin + x;
             GLfloat y4 = radius * angleCos + y;
 
-          //  std::cout<<x1<<" "<<y1<<" "<<x2<<" "<<y2<<" "<<x3<<" "<<y3<<" "<<x4<<" "<<y4<<"\n";
 
             face(x4,y4,z, x3, y3, z, x2, y2, z, x1, y1, z); // bottom
             face(x1,y1, z+slice, x2, y2, z+slice, x3, y3, z+slice, x4, y4, z+slice); // top
@@ -138,7 +138,6 @@ void Cylinder3D::rotate(){
         z=z+slice;
 
     }
-  //  system("pause");
 
 }
 

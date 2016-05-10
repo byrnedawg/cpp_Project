@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "triangle3d.h"
 
 Triangle3D::Triangle3D(GLfloat x, GLfloat y, GLfloat z,

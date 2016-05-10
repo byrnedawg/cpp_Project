@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QSurfaceFormat>
@@ -19,6 +21,7 @@ int main(int argc, char *argv[])
     }
     QSurfaceFormat::setDefaultFormat(fmt);
 
+    // call to our mainWindow object
     MainWindow mainWindow;
 
     if (QCoreApplication::arguments().contains(QStringLiteral("--transparent"))) {

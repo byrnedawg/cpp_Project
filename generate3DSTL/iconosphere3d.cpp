@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "iconosphere3d.h"
 
 Iconosphere3D::Iconosphere3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius,
@@ -51,6 +53,7 @@ void Iconosphere3D::draw(){
     GLfloat y11 = y - radius;
     GLfloat z11 = z;
 
+    // define 20 triangles
     tri(x0, y0, z0, x1, y1, z1, x5, y5, z5);
     tri(x0, y0, z0, x5, y5, z5, x11, y11, z11);
     tri(x0, y0, z0, x11, y11, z11, x10, y10, z10);

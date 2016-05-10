@@ -1,3 +1,5 @@
+// Author: Gregory Byrne
+
 #include "cone3d.h"
 
 Cone3D::Cone3D(GLfloat x, GLfloat y, GLfloat z, GLfloat radius,

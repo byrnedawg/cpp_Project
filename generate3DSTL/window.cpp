@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "glwidget.h"
 #include "window.h"
 #include "mainwindow.h"

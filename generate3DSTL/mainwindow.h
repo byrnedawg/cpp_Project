@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

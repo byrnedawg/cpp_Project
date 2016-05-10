@@ -1,3 +1,6 @@
+//Author: Gregory Byrne for 3D Rectangle and Extruded 3D Rectangle
+//        Shaotu Jia for Inclinded 3D Rectangle
+
 #include "rectangle3D.h"
 
 Rectangle3D::Rectangle3D(GLfloat x, GLfloat y, GLfloat z,
@@ -114,20 +117,11 @@ void Rectangle3D::offset(){
     GLfloat y8 = y4+offsetY;
     GLfloat z8 = z4+height;
 
-    face(x1,y1,z1,x4,y4,z4,x3,y3,z3,x2,y2,z2);
-    face(x5,y5,z5,x6,y6,z6,x7,y7,z7,x8,y8,z8);
-    face(x1,y1,z1,x2,y2,z2,x6,y6,z6,x5,y5,z5);
-    face(x2,y2,z2,x3,y3,z3,x7,y7,z7,x6,y6,z6);
-    face(x3,y3,z3,x4,y4,z4,x8,y8,z8,x7,y7,z7);
-    face(x1,y1,z1,x5,y5,z5,x8,y8,z8,x4,y4,z4);
+    face(x1,y1,z1,x4,y4,z4,x3,y3,z3,x2,y2,z2);//bottom
+    face(x5,y5,z5,x6,y6,z6,x7,y7,z7,x8,y8,z8);//top
+    face(x1,y1,z1,x2,y2,z2,x6,y6,z6,x5,y5,z5);//width side
+    face(x2,y2,z2,x3,y3,z3,x7,y7,z7,x6,y6,z6);//width side
+    face(x3,y3,z3,x4,y4,z4,x8,y8,z8,x7,y7,z7);//length side
+    face(x1,y1,z1,x5,y5,z5,x8,y8,z8,x4,y4,z4);//length side
 
-
-/*
-    face(x1, y1, z, x4, y4, z, x3, y3, z, x2, y2, z);   //bottom  1,4,3,2
-    face(x1, y1, z2, x2, y2, z2, x3, y3, z2, x4, y4, z2); // top   5,6,7,8
-    face(x1, y1, z, x1, y1, z2, x4, y4, z2, x4, y4, z); // width side 1,5,8,4
-    face(x2, y2, z, x3, y3, z, x3, y3, z2, x2, y2, z2); // width side
-    face(x1, y1, z, x2, y2, z, x2, y2, z2, x1, y1, z2); // length side
-    face(x4, y4, z, x4, y4, z2, x3, y3, z2, x3, y3, z); // length side
-    */
 }

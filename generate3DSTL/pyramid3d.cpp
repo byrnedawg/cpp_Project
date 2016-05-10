@@ -1,3 +1,5 @@
+//Author: Gregory Byrne
+
 #include "pyramid3d.h"
 
 Pyramid3D::Pyramid3D( GLfloat x, GLfloat y, GLfloat z, GLfloat length,
